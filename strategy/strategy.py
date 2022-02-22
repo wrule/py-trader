@@ -6,6 +6,18 @@ class Strategy:
   
   hist: DataFrame = None
   
+  def length(
+    self,
+  ):
+    return len(self.hist.index)
+  
+  def getRow(
+    self,
+    index: int,
+    field: str,
+  ):
+    return self.hist.iloc[index][field]
+  
   def last(
     self,
     field: str,

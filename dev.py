@@ -9,5 +9,7 @@ df.ta.sma(length = 8, append = True)
 df.ta.sma(length = 44, append = True)
 print(len(df.index))
 
-s = Strategy()
-s.Backtesting(df)
+print(type(df.iloc[0]['Close']))
+
+# s = Strategy()
+# s.Backtesting(df)
