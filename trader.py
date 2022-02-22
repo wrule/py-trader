@@ -38,7 +38,6 @@ class Trader:
       self.assets += (useFunds / kline.close) * (1 - self.buyFee)
       return True
     return False
-      
   
   def sell(
     self,
