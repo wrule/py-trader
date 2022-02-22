@@ -6,11 +6,22 @@ class Strategy:
   
   hist: DataFrame = None
   
+  def last(
+    self,
+    field: str,
+  ):
+    return self.hist.tail(2)[field].iloc[1]
+  
+  def prev(
+    self,
+    field: str,
+  ):
+    return self.hist.tail(2)[field].iloc[0]
+  
   def Backtesting(
     self,
     hist: DataFrame,
   ):
     for index in range(len(hist.index)):
-      currentHist: DataFrame = hist.iloc[0 : index + 1]
-      print(len(currentHist.index))
-    print(hist.iloc[0])
+      self.hist = hist.iloc[0 : index + 1]
+      print(len(self.hist.index), self.last('SMA_8'), self.last('SMA_44'))

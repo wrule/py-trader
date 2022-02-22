@@ -7,7 +7,6 @@ from strategy.strategy import Strategy
 df = load('BTC-USD')
 df.ta.sma(length = 8, append = True)
 df.ta.sma(length = 44, append = True)
-print(df.iloc[0:0])
 print(len(df.index))
 
 s = Strategy()
