@@ -4,7 +4,6 @@ import pandas_ta as ta
 from tools.yfinance import load
 
 df = load('BTC-USD')
-# print(df.iloc[[0]])
-sma10 = ta.sma(df['Close'], length = 8)
-ta.ma()
-print(sma10.head(10))
+df.ta.sma(length = 8, append = True)
+df.ta.sma(length = 44, append = True)
+print(df.iloc[0:5])
