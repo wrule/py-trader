@@ -1,4 +1,5 @@
 
+import pandas as pd
 import yfinance as yf
 
 def download(symbol: str):
@@ -8,3 +9,7 @@ def download(symbol: str):
   filePath = f'data/yahoo/{symbol}.pkl'
   hist.to_pickle(filePath)
   print(f'下载完成，数据已经保存在: {filePath}')
+  
+def load(symbol):
+  filePath = f'data/yahoo/{symbol}.pkl'
+  return pd.read_pickle(filePath)
