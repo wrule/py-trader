@@ -1,3 +1,6 @@
 #!/opt/homebrew/bin/python3
+from kline import KLine
 
-print('你好，世界')
+k = KLine(0, 3, 2, 4, 2, 1, False)
+
+print(k)
