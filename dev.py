@@ -1,5 +1,6 @@
 #!/opt/homebrew/bin/python3
 import yfinance as yf
-from tools.yfinance import download
+from tools.yfinance import download, load
 
-download('DENT-USD')
+df = load('BTC-USD')
+print(df)
