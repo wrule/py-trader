@@ -40,7 +40,7 @@ class Strategy(ABC):
     pass
 
   @abstractmethod
-  def already(
+  def ready(
     self,
     hist: DataFrame,
   ):
@@ -52,6 +52,6 @@ class Strategy(ABC):
   ):
     for index in range(len(hist.index)):
       self.hist = hist.iloc[0 : index + 1]
-      if self.already(hist):
+      if self.ready(hist):
         self.watch(self.hist)
         time.sleep(0.5)

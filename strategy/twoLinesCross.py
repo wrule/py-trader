@@ -15,7 +15,7 @@ class TwoLinesCross(Strategy):
   fast: str = ''
   slow: str = ''
   
-  def already(self, hist: DataFrame):
+  def ready(self, hist: DataFrame):
     return (
       self.length() >= 2 and
       self.twoLinesReady(hist)
