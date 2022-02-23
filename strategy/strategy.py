@@ -11,12 +11,11 @@ class Strategy:
   ):
     return len(self.hist.index)
   
-  def getRow(
+  def row(
     self,
     index: int,
-    field: str,
   ):
-    return self.hist.iloc[index][field]
+    return self.hist.iloc[index]
   
   def last(
     self,
