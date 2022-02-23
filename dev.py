@@ -6,9 +6,11 @@ from tools.yfinance import load
 from strategy.strategy import Strategy
 from strategy.twoLinesCross import TwoLinesCross
 
-df = load('BTC-USD')
-df.ta.sma(length = 8, append = True)
-df.ta.sma(length = 44, append = True)
+# df = load('BTC-USD')
+# df.ta.sma(length = 8, append = True)
+# df.ta.sma(length = 44, append = True)
 
-s = TwoLinesCross('SMA_8', 'SMA_44')
-s.Backtesting(df)
+# s = TwoLinesCross('SMA_8', 'SMA_44')
+# s.Backtesting(df)
+
+print('你好，世界')
