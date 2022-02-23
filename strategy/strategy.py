@@ -1,3 +1,4 @@
+import time
 from pandas import DataFrame
 
 from abc import ABC, abstractmethod
@@ -37,6 +38,13 @@ class Strategy(ABC):
     hist: DataFrame,
   ):
     pass
+
+  @abstractmethod
+  def already(
+    self,
+    hist: DataFrame,
+  ):
+    return False
   
   def Backtesting(
     self,
@@ -44,4 +52,6 @@ class Strategy(ABC):
   ):
     for index in range(len(hist.index)):
       self.hist = hist.iloc[0 : index + 1]
-      self.watch(self.hist)
+      if self.already(hist):
+        self.watch(self.hist)
+        time.sleep(0.5)
