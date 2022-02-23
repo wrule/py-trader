@@ -6,21 +6,21 @@ import datetime
 
 @dataclass
 class Snapshot:
-  datetime: datetime
-  funds: float
-  assets: float
-  fundsDebt: float
-  assetsDebt: float
-  price: float
+  datetime: datetime = 0
+  funds: float = 0
+  assets: float = 0
+  fundsDebt: float = 0
+  assetsDebt: float = 0
+  price: float = 0
 
 class SnapshotList:
   def __init__(
     self,
   ):
-    self.df = DataFrame([Snapshot(0, 0, 0, 0, 0, 0)])
+    self.df = DataFrame([Snapshot()])
     self.df.index = pd.to_datetime(self.df['datetime'])
     self.df.drop('datetime', axis = 1, inplace = True)
-    self.df.drop(self.df.index, inplace = True)
+    self.df.drop(self.df.index, axis = 0, inplace = True)
   
   df: DataFrame = None
 
@@ -28,5 +28,5 @@ class SnapshotList:
     self,
     snapshot: Snapshot,
   ):
-    pd.concat()
+    # pd.concat()
     print(self.df)
