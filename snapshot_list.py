@@ -12,6 +12,11 @@ class Snapshot:
   fundsDebt: float = 0
   assetsDebt: float = 0
   price: float = 0
+  
+  def valuation(self):
+    totalFunds = self.funds + self.assets * self.price
+    totalDebt = self.fundsDebt + self.assetsDebt * self.price
+    return totalFunds - totalDebt
 
 class SnapshotList:
   def __init__(
