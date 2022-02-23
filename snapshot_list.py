@@ -1,0 +1,3 @@
+
+class SnapshotList:
+  pass
