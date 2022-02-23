@@ -5,7 +5,7 @@ import pandas_ta as ta
 from tools.yfinance import load
 from strategy.strategy import Strategy
 from strategy.twoLinesCross import TwoLinesCross
-from snapshot_list import SnapshotList
+from snapshot_list import Snapshot, SnapshotList
 import datetime
 
 df1 = load('BTC-USD')
@@ -18,4 +18,4 @@ df1 = load('BTC-USD')
 print('你好，世界')
 
 list = SnapshotList()
-list.append({})
+list.append(Snapshot())

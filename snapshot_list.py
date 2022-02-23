@@ -2,7 +2,7 @@
 import pandas as pd
 from pandas import DataFrame
 from dataclasses import dataclass
-import datetime
+from datetime import datetime
 
 @dataclass
 class Snapshot:
@@ -17,16 +17,24 @@ class SnapshotList:
   def __init__(
     self,
   ):
-    self.df = DataFrame([Snapshot()])
-    self.df.index = pd.to_datetime(self.df['datetime'])
-    self.df.drop('datetime', axis = 1, inplace = True)
+    self.df = self.toDataFrame(Snapshot())
     self.df.drop(self.df.index, axis = 0, inplace = True)
   
   df: DataFrame = None
+  
+  def toDataFrame(
+    self,
+    snapshot: Snapshot,
+  ):
+    df = DataFrame([snapshot])
+    df.index = pd.to_datetime(df['datetime'])
+    df.drop('datetime', axis = 1, inplace = True)
+    return df
+
 
   def append(
     self,
     snapshot: Snapshot,
   ):
-    # pd.concat()
+    self.df = pd.concat([self.df, self.toDataFrame(snapshot)])
     print(self.df)
