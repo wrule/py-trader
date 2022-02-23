@@ -1,6 +1,8 @@
 from pandas import DataFrame
 
-class Strategy:
+from abc import ABC, abstractmethod
+
+class Strategy(ABC):
   def __init__(self):
     pass
   
@@ -16,6 +18,12 @@ class Strategy:
     index: int,
   ):
     return self.hist.iloc[index]
+    
+  def prev(
+    self,
+    field: str,
+  ):
+    return self.hist.tail(2)[field].iloc[0]
   
   def last(
     self,
@@ -23,11 +31,12 @@ class Strategy:
   ):
     return self.hist.tail(2)[field].iloc[1]
   
-  def prev(
+  @abstractmethod
+  def watch(
     self,
-    field: str,
+    hist: DataFrame,
   ):
-    return self.hist.tail(2)[field].iloc[0]
+    pass
   
   def Backtesting(
     self,
@@ -35,4 +44,4 @@ class Strategy:
   ):
     for index in range(len(hist.index)):
       self.hist = hist.iloc[0 : index + 1]
-      print(len(self.hist.index), self.last('SMA_8'), self.last('SMA_44'))
+      self.watch(self.hist)
