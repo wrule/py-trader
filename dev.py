@@ -18,4 +18,7 @@ df1 = load('BTC-USD')
 print('你好，世界')
 
 list = SnapshotList()
-list.append(Snapshot())
+list.append(Snapshot(0))
+list.append(Snapshot(100000000000000))
+list.append(Snapshot(200000000000000))
+print(list.dataframe())
