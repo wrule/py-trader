@@ -18,10 +18,12 @@ df1.ta.sma(length = 44, append = True)
 # for index, row in df1.iterrows():
 #   print(row['Close'])
 
-trader = Trader()
-s = TwoLinesCross(trader, 'SMA_8', 'SMA_44')
-s.Backtesting(df1)
-print(trader.funds)
+print(df1.columns)
+
+# trader = Trader()
+# s = TwoLinesCross(trader, 'SMA_8', 'SMA_44')
+# s.Backtesting(df1)
+# print(trader.funds)
 
 # print('你好，世界')
 
