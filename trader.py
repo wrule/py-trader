@@ -1,5 +1,8 @@
 
+from datetime import datetime
 from kline import KLine
+from snapshot_list import Snapshot, SnapshotList
+from transaction_list import TransactionList
 
 
 class Trader:
@@ -22,11 +25,43 @@ class Trader:
   buyFee: float = 0
   sellFee: float = 0
   
-  def start(self):
-    pass
+  snapshotList = SnapshotList()
+  transactionList = TransactionList()
   
-  def end(self):
-    pass
+  def snapshot(
+    self,
+    datetime: datetime,
+    price: float,
+  ):
+    return Snapshot(
+      datetime,
+      self.funds,
+      self.assets,
+      self.fundsDebt,
+      self.assetsDebt,
+      price,
+    )
+  
+  def start(
+    self,
+    datetime: datetime,
+    price: float,
+  ):
+    self.transactionList.start(self.snapshot(datetime, price))
+  
+  def end(
+    self,
+    datetime: datetime,
+    price: float,
+  ):
+    self.transactionList.end(self.snapshot(datetime, price))
+    
+  def log(
+    self,
+    datetime: datetime,
+    price: float,
+  ):
+    self.snapshotList.append(self.snapshot(datetime, price))
   
   def buy(
     self,
