@@ -1,4 +1,5 @@
 
+import datetime
 import pandas as pd
 from pandas import DataFrame
 from strategy.strategy import Strategy
@@ -48,18 +49,21 @@ class TwoLinesCross(Strategy):
     self,
     hist: DataFrame,
   ):
-    print(self.length(), self.last(self.fast), self.last(self.slow))
+    # print(self.length(), self.last(self.fast), self.last(self.slow))
     if (
       self.prevFast() <= self.prevSlow() and
       self.lastFast() > self.lastSlow()
     ):
-      print('买入')
+      # print('买入')
+      # self.trader.start(datetime.datetime.now(), self.lastRow()['Close'])
       self.trader.buy(self.lastRow(), 1)
     elif (
       self.prevFast() >= self.prevSlow() and
       self.lastFast() < self.lastSlow()
     ):
-      print('卖出')
+      # print('卖出')
       self.trader.sell(self.lastRow(), 1)
+      # self.trader.end(datetime.datetime.now(), self.lastRow()['Close'])
     else:
-      print('无操作')
+      pass
+      # print('无操作')

@@ -12,8 +12,8 @@ class Trader:
     self,
     funds: float = 100,
     assets: float = 0,
-    buyFee: float = 0.02,
-    sellFee: float = 0.02,
+    buyFee: float = 0.002,
+    sellFee: float = 0.002,
     transaction: bool = True,
     snapshot: bool = False,
   ):

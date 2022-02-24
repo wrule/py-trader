@@ -11,13 +11,15 @@ import datetime
 from trader import Trader
 
 df1 = load('BTC-USD')
-df1.ta.sma(length = 11, append = True)
-df1.ta.sma(length = 21, append = True)
+df1.ta.sma(length = 8, append = True)
+df1.ta.sma(length = 44, append = True)
+# print(df1.iloc[0])
+# a = df1.iloc[0]
 # for index, row in df1.iterrows():
 #   print(row['Close'])
 
 trader = Trader()
-s = TwoLinesCross(trader, 'SMA_11', 'SMA_21')
+s = TwoLinesCross(trader, 'SMA_8', 'SMA_44')
 s.Backtesting(df1)
 print(trader.funds)
 
