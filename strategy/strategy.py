@@ -63,4 +63,4 @@ class Strategy(ABC):
       self.hist = hist.iloc[0 : index + 1]
       if self.ready(hist):
         self.watch(self.hist)
-        time.sleep(0.5)
+
