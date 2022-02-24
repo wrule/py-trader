@@ -12,11 +12,15 @@ class Trader:
     assets: float = 0,
     buyFee: float = 0.02,
     sellFee: float = 0.02,
+    transaction: bool = True,
+    snapshot: bool = False,
   ):
     self.funds = funds
     self.assets = assets
     self.buyFee = buyFee
     self.sellFee = sellFee
+    self.snapshot = snapshot
+    self.transaction = transaction
   
   funds: float = 0
   fundsDebt: float = 0
@@ -25,7 +29,9 @@ class Trader:
   buyFee: float = 0
   sellFee: float = 0
   
+  snapshot: bool = False
   snapshotList = SnapshotList()
+  transaction: bool = True
   transactionList = TransactionList()
   
   def snapshot(
@@ -47,21 +53,24 @@ class Trader:
     datetime: datetime,
     price: float,
   ):
-    self.transactionList.start(self.snapshot(datetime, price))
+    if self.transaction:
+      self.transactionList.start(self.snapshot(datetime, price))
   
   def end(
     self,
     datetime: datetime,
     price: float,
   ):
-    self.transactionList.end(self.snapshot(datetime, price))
+    if self.transaction:
+      self.transactionList.end(self.snapshot(datetime, price))
     
   def log(
     self,
     datetime: datetime,
     price: float,
   ):
-    self.snapshotList.append(self.snapshot(datetime, price))
+    if self.snapshot:
+      self.snapshotList.append(self.snapshot(datetime, price))
   
   def buy(
     self,
