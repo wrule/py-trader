@@ -1,12 +1,18 @@
 import time
-from pandas import DataFrame
+from pandas import DataFrame, Series
 
 from abc import ABC, abstractmethod
 
+from trader import Trader
+
 class Strategy(ABC):
-  def __init__(self):
-    pass
+  def __init__(
+    self,
+    trader: Trader,
+  ):
+    self.trader = trader
   
+  trader: Trader = None
   hist: DataFrame = None
   
   def length(
