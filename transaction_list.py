@@ -53,5 +53,8 @@ class TransactionList:
     df['startAssetValuation'] = df.apply(lambda row: row['startFunds'] + row['startAssets'] * row['startPrice'], axis = 1)
     df['startDebtValuation'] = df.apply(lambda row: row['startFundsDebt'] + row['startAssetsDebt'] * row['startPrice'], axis = 1)
     df['startValuation'] = df.apply(lambda row: row['startAssetValuation'] - row['startDebtValuation'], axis = 1)
+    df['endAssetValuation'] = df.apply(lambda row: row['endFunds'] + row['endAssets'] * row['endPrice'], axis = 1)
+    df['endDebtValuation'] = df.apply(lambda row: row['endFundsDebt'] + row['endAssetsDebt'] * row['endPrice'], axis = 1)
+    df['endValuation'] = df.apply(lambda row: row['endAssetValuation'] - row['endDebtValuation'], axis = 1)
     return df
 
