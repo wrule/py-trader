@@ -22,6 +22,12 @@ class Trader:
   buyFee: float = 0
   sellFee: float = 0
   
+  def start(self):
+    pass
+  
+  def end(self):
+    pass
+  
   def buy(
     self,
     kline: KLine,
