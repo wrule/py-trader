@@ -38,6 +38,9 @@ class Strategy(ABC):
   ):
     return self.hist.tail(2)[field].iloc[1]
   
+  def lastRow(self):
+    return self.hist.tail(2).iloc[1]
+  
   @abstractmethod
   def watch(
     self,

@@ -2,13 +2,16 @@
 import pandas as pd
 from pandas import DataFrame
 from strategy.strategy import Strategy
+from trader import Trader
 
 class TwoLinesCross(Strategy):
   def __init__(
     self,
+    trader: Trader,
     fast: str,
     slow: str,
   ):
+    super().__init__(trader)
     self.fast = fast
     self.slow = slow
   
@@ -51,10 +54,12 @@ class TwoLinesCross(Strategy):
       self.lastFast() > self.lastSlow()
     ):
       print('买入')
+      self.trader.buy(self.lastRow(), 1)
     elif (
       self.prevFast() >= self.prevSlow() and
       self.lastFast() < self.lastSlow()
     ):
       print('卖出')
+      self.trader.sell(self.lastRow(), 1)
     else:
       print('无操作')
