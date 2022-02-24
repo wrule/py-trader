@@ -23,10 +23,13 @@ class SnapshotList:
   list: List[Snapshot] = []
 
   def append(self, snapshot: Snapshot):
-    self.list.append(snapshot)  
+    self.list.append(snapshot)
 
   def dataframe(self):
     df = DataFrame(self.list)
     df.index = pd.to_datetime(df['datetime'])
     df.drop('datetime', axis = 1, inplace = True)
+    df['assetValuation'] = df.apply(lambda row: row['funds'] + row['assets'] * row['price'], axis = 1)
+    df['debtValuation'] = df.apply(lambda row: row['fundsDebt'] + row['assetsDebt'] * row['price'], axis = 1)
+    df['valuation'] = df.apply(lambda row: row['assetValuation'] - row['debtValuation'], axis = 1)
     return df

@@ -19,6 +19,6 @@ print('你好，世界')
 
 list = SnapshotList()
 list.append(Snapshot(0))
-list.append(Snapshot(100000000000000))
-list.append(Snapshot(200000000000000))
+list.append(Snapshot(100000000000000, 1, 2, 0, 0, 2))
+list.append(Snapshot(200000000000000, 2, 2, 0, 0, 1.9))
 print(list.dataframe())
