@@ -2,6 +2,8 @@
 from dataclasses import dataclass
 from datetime import datetime
 from typing import List
+
+from pandas import DataFrame
 from snapshot_list import Snapshot
 
 @dataclass
@@ -45,3 +47,11 @@ class TransactionList:
       list.append(self.txn)
       self.txn = Transaction(0, 0)
       self.started = False
+      
+  def dataframe(self):
+    df = DataFrame(self.list)
+    df['startAssetValuation'] = df.apply(lambda row: row['startFunds'] + row['startAssets'] * row['startPrice'], axis = 1)
+    df['startDebtValuation'] = df.apply(lambda row: row['startFundsDebt'] + row['startAssetsDebt'] * row['startPrice'], axis = 1)
+    df['startValuation'] = df.apply(lambda row: row['startAssetValuation'] - row['startDebtValuation'], axis = 1)
+    return df
+
