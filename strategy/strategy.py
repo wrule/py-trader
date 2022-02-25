@@ -16,17 +16,11 @@ class Strategy(ABC):
   trader: Trader = None
   
   @abstractmethod
-  def watch(
-    self,
-    hist: DataFrame,
-  ):
+  def watch(self):
     pass
 
   @abstractmethod
-  def ready(
-    self,
-    hist: DataFrame,
-  ):
+  def ready(self):
     return False
   
   hist: List[Dict[str, Any]] = []
@@ -64,8 +58,9 @@ class Strategy(ABC):
     self,
     hist: List[Dict[str, Any]],
   ):
+    self.hist = hist
     for index in range(len(hist)):
       self.lastIndex = index
-      if self.ready(hist):
-        self.watch(self.hist)
+      if self.ready():
+        self.watch()
 
