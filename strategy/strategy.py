@@ -31,9 +31,9 @@ class Strategy(ABC):
   
   hist: List[Dict[str, Any]] = []
   lastIndex = 0
-  
+
   def length(self):
-    return len(self.hist)
+    return self.lastIndex + 1
   
   def index(self, index: int):
     assert index >= 0 and index <= self.lastIndex
@@ -57,14 +57,15 @@ class Strategy(ABC):
   def field(self, index: int, field: str):
     return self.record(index)[field]
   
+  def lastHist(self):
+    return self.hist[0 : self.length()]
+  
   def Backtesting(
     self,
     hist: List[Dict[str, Any]],
   ):
     for index in range(len(hist)):
       self.lastIndex = index
-      pass
-    # for index in range(len(hist.index)):
-    #   self.hist = hist.iloc[0 : index + 1]
-    #   if self.ready(hist):
-    #     self.watch(self.hist)
+      if self.ready(hist):
+        self.watch(self.hist)
+
