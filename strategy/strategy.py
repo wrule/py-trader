@@ -58,4 +58,5 @@ class Strategy(ABC):
       self.lastIndex = index
       if self.ready():
         self.watch()
+      self.trader.log(self.last('Date'), self.last('Close'))
 

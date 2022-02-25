@@ -11,10 +11,11 @@ df.ta.sma(length = 44, append = True)
 
 hist = to_dict_list(df)
 
-trader = Trader()
+trader = Trader(snapshot = True)
 tlc = TwoLinesCross(trader, 'SMA_8', 'SMA_44')
 oldTime = datetime.now()
 tlc.Backtesting(hist)
 print(datetime.now() - oldTime)
 print(trader.funds)
-trader.transactionList.dataframe().to_excel('1.xlsx')
+trader.transactionList.dataframe().to_excel('transaction.xlsx')
+trader.snapshotList.dataframe().to_excel('snapshot.xlsx')

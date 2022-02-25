@@ -72,7 +72,7 @@ class Trader:
     price: float,
   ):
     if self.snapshot:
-      self.snapshotList.append(self.snapshot(datetime, price))
+      self.snapshotList.append(self.makeSnapshot(datetime, price))
   
   def buy(
     self,
