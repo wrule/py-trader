@@ -16,8 +16,8 @@ class TwoLinesCross(Strategy):
     self.fast = fast
     self.slow = slow
   
-  fast: str = ''
-  slow: str = ''
+  fast: str
+  slow: str
   
   def ready(self):
     return (
@@ -46,21 +46,13 @@ class TwoLinesCross(Strategy):
     return self.prev(self.slow)
 
   def watch(self):
-    # print(self.length(), self.last(self.fast), self.last(self.slow))
     if (
       self.prevFast() <= self.prevSlow() and
       self.lastFast() > self.lastSlow()
     ):
-      # print('买入')
-      # self.trader.start(datetime.datetime.now(), self.lastRow()['Close'])
       self.trader.buy(self.lastRecord(), 1)
     elif (
       self.prevFast() >= self.prevSlow() and
       self.lastFast() < self.lastSlow()
     ):
-      # print('卖出')
       self.trader.sell(self.lastRecord(), 1)
-      # self.trader.end(datetime.datetime.now(), self.lastRow()['Close'])
-    else:
-      pass
-      # print('无操作')
