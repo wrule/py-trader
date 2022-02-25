@@ -1,5 +1,6 @@
 
 import pandas as pd
+from pandas import DataFrame
 import yfinance as yf
 
 def download(symbol: str):
@@ -11,6 +12,12 @@ def download(symbol: str):
   hist.to_pickle(filePath)
   print(f'下载完成，数据已经保存在: {filePath}')
   
-def load(symbol: str) -> pd.DataFrame:
+def load(symbol: str) -> DataFrame:
   filePath = f'data/yahoo/{symbol}.pkl'
   return pd.read_pickle(filePath)
+
+def to_dict_list(df: DataFrame):
+  return df.to_dict('records')
+
+def load_dict_list(symbol: str):
+  return to_dict_list(load(symbol))

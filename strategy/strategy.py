@@ -1,4 +1,5 @@
 import time
+from typing import Any, Dict, List
 from pandas import DataFrame, Series
 
 from abc import ABC, abstractmethod
@@ -13,7 +14,6 @@ class Strategy(ABC):
     self.trader = trader
   
   trader: Trader = None
-  hist: DataFrame = None
   
   def length(
     self,
@@ -55,12 +55,39 @@ class Strategy(ABC):
   ):
     return False
   
+  hist: List[Dict[str, Any]] = []
+  lastIndex = 0
+  
+  def index(self, index: int):
+    assert index >= 0 and index <= self.lastIndex
+    return self.lastIndex - index
+  
+  def record(self, index: int):
+    return self.hist[self.index(index)]
+  
+  def lastRecord(self):
+    return self.record(0)
+  
+  def prevRecord(self):
+    return self.record(1)
+  
+  def last(self, field: str):
+    return self.lastRecord()[field]
+  
+  def prev(self, field: str):
+    return self.prevRecord()[field]
+  
+  def field(self, index: int, field: str):
+    return self.record(index)[field]
+  
   def Backtesting(
     self,
-    hist: DataFrame,
+    hist: List[Dict[str, Any]],
   ):
-    for index in range(len(hist.index)):
-      self.hist = hist.iloc[0 : index + 1]
-      if self.ready(hist):
-        self.watch(self.hist)
-
+    for index in range(len(hist)):
+      self.lastIndex = index
+      pass
+    # for index in range(len(hist.index)):
+    #   self.hist = hist.iloc[0 : index + 1]
+    #   if self.ready(hist):
+    #     self.watch(self.hist)
