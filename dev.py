@@ -4,6 +4,7 @@ import time
 import pandas_ta as ta
 from tools.yfinance import load, to_dict_list
 from strategy.twoLinesCross import TwoLinesCross
+from strategy.twoLinesCrossX import TwoLinesCrossX
 from trader import Trader
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -16,11 +17,11 @@ df.ta.sma(length = 44, append = True)
 hist = to_dict_list(df)
 
 trader = Trader(snapshot = True)
-tlc = TwoLinesCross(trader, 'SMA_8', 'SMA_44')
+tlc = TwoLinesCrossX(trader, 'SMA_8', 'SMA_44')
 oldTime = datetime.now()
 tlc.Backtesting(hist)
 print(datetime.now() - oldTime)
-print(trader.funds)
+print(trader.funds, trader.assets)
 trader.transactionList.dataframe().to_excel('transaction.xlsx')
 trader.snapshotList.dataframe().to_excel('snapshot.xlsx')
 
