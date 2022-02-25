@@ -1,7 +1,7 @@
 
 from datetime import datetime
+from typing import Any, Dict
 
-from pandas import Series
 from kline import KLine
 from snapshot_list import Snapshot, SnapshotList
 from transaction_list import TransactionList
@@ -76,7 +76,7 @@ class Trader:
   
   def buy(
     self,
-    kline: Series,
+    kline: Dict[str, Any],
     percent: int = 1,
   ):
     if (
@@ -93,7 +93,7 @@ class Trader:
   
   def sell(
     self,
-    kline: Series,
+    kline: Dict[str, Any],
     percent: int = 1,
   ):
     if (
@@ -110,12 +110,12 @@ class Trader:
   
   def long(
     self,
-    kline: Series,
+    kline: Dict[str, Any],
   ):
     pass
 
   def short(
     self,
-    kline: Series,
+    kline: Dict[str, Any],
   ):
     pass

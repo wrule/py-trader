@@ -19,13 +19,13 @@ class TwoLinesCross(Strategy):
   fast: str = ''
   slow: str = ''
   
-  def ready(self, hist: DataFrame):
+  def ready(self):
     return (
       self.length() >= 2 and
-      self.twoLinesReady(hist)
+      self.twoLinesReady()
     )
     
-  def twoLinesReady(self, hist: DataFrame):
+  def twoLinesReady(self):
     return (
       not pd.isnull(self.lastFast()) and
       not pd.isnull(self.lastSlow()) and
@@ -45,10 +45,7 @@ class TwoLinesCross(Strategy):
   def prevSlow(self):
     return self.prev(self.slow)
 
-  def watch(
-    self,
-    hist: DataFrame,
-  ):
+  def watch(self):
     # print(self.length(), self.last(self.fast), self.last(self.slow))
     if (
       self.prevFast() <= self.prevSlow() and
@@ -56,13 +53,13 @@ class TwoLinesCross(Strategy):
     ):
       # print('买入')
       # self.trader.start(datetime.datetime.now(), self.lastRow()['Close'])
-      self.trader.buy(self.lastRow(), 1)
+      self.trader.buy(self.lastRecord(), 1)
     elif (
       self.prevFast() >= self.prevSlow() and
       self.lastFast() < self.lastSlow()
     ):
       # print('卖出')
-      self.trader.sell(self.lastRow(), 1)
+      self.trader.sell(self.lastRecord(), 1)
       # self.trader.end(datetime.datetime.now(), self.lastRow()['Close'])
     else:
       pass
