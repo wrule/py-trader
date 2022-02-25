@@ -15,32 +15,6 @@ class Strategy(ABC):
   
   trader: Trader = None
   
-  def length(
-    self,
-  ):
-    return len(self.hist.index)
-  
-  def row(
-    self,
-    index: int,
-  ):
-    return self.hist.iloc[index]
-    
-  def prev(
-    self,
-    field: str,
-  ):
-    return self.hist.tail(2)[field].iloc[0]
-  
-  def last(
-    self,
-    field: str,
-  ):
-    return self.hist.tail(2)[field].iloc[1]
-  
-  def lastRow(self):
-    return self.hist.tail(2).iloc[1]
-  
   @abstractmethod
   def watch(
     self,
@@ -57,6 +31,9 @@ class Strategy(ABC):
   
   hist: List[Dict[str, Any]] = []
   lastIndex = 0
+  
+  def length(self):
+    return len(self.hist)
   
   def index(self, index: int):
     assert index >= 0 and index <= self.lastIndex
