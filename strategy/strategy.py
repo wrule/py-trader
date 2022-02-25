@@ -1,9 +1,5 @@
-import time
 from typing import Any, Dict, List
-from pandas import DataFrame, Series
-
 from abc import ABC, abstractmethod
-
 from trader import Trader
 
 class Strategy(ABC):
@@ -14,17 +10,16 @@ class Strategy(ABC):
     self.trader = trader
   
   trader: Trader = None
+  hist: List[Dict[str, Any]] = []
+  lastIndex = 0
   
-  @abstractmethod
-  def watch(self):
-    pass
-
   @abstractmethod
   def ready(self):
     return False
   
-  hist: List[Dict[str, Any]] = []
-  lastIndex = 0
+  @abstractmethod
+  def watch(self):
+    pass
 
   def length(self):
     return self.lastIndex + 1
