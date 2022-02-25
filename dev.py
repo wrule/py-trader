@@ -1,10 +1,7 @@
 #!/opt/homebrew/bin/python3
 from datetime import datetime
-import pandas as pd
-import pandas_ta as ta
 from tools.yfinance import load
 from strategy.twoLinesCross import TwoLinesCross
-
 from trader import Trader
 
 df = load('BTC-USD')
