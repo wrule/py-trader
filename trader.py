@@ -36,7 +36,7 @@ class Trader:
   transaction: bool = True
   transactionList = TransactionList()
   
-  def snapshot(
+  def makeSnapshot(
     self,
     datetime: datetime,
     price: float,
@@ -56,7 +56,7 @@ class Trader:
     price: float,
   ):
     if self.transaction:
-      self.transactionList.start(self.snapshot(datetime, price))
+      self.transactionList.start(self.makeSnapshot(datetime, price))
   
   def end(
     self,
@@ -64,7 +64,7 @@ class Trader:
     price: float,
   ):
     if self.transaction:
-      self.transactionList.end(self.snapshot(datetime, price))
+      self.transactionList.end(self.makeSnapshot(datetime, price))
     
   def log(
     self,

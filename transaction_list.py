@@ -44,7 +44,7 @@ class TransactionList:
       self.txn.endAssets = snapshot.assets
       self.txn.endAssetsDebt = snapshot.assetsDebt
       self.txn.endPrice = snapshot.price
-      list.append(self.txn)
+      self.list.append(self.txn)
       self.txn = Transaction(0, 0)
       self.started = False
       

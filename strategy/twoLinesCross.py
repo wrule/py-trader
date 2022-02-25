@@ -50,9 +50,11 @@ class TwoLinesCross(Strategy):
       self.prevFast() <= self.prevSlow() and
       self.lastFast() > self.lastSlow()
     ):
+      self.trader.start(self.last('Date'), self.last('Close'))
       self.trader.buy(self.lastRecord(), 1)
     elif (
       self.prevFast() >= self.prevSlow() and
       self.lastFast() < self.lastSlow()
     ):
       self.trader.sell(self.lastRecord(), 1)
+      self.trader.end(self.last('Date'), self.last('Close'))
