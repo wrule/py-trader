@@ -7,6 +7,14 @@ from pandas import DataFrame
 from snapshot_list import Snapshot
 
 class TransactionX:
+  def __init__(
+    self,
+    start: Snapshot,
+    end: Snapshot,
+  ):
+    self.start = start
+    self.end = end
+
   start: Snapshot
   end: Snapshot
   
