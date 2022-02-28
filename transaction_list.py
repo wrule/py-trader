@@ -6,6 +6,19 @@ from typing import List
 from pandas import DataFrame
 from snapshot_list import Snapshot
 
+class TransactionX:
+  start: Snapshot
+  end: Snapshot
+  
+  def win(self):
+    return self.end.valuation() > self.start.valuation()
+  
+  def profit(self):
+    return self.end.valuation() - self.start.valuation()
+  
+  def profitRate(self):
+    return self.profit() / self.start.valuation()
+
 @dataclass
 class Transaction:
   start: datetime
