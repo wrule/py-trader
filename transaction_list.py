@@ -7,8 +7,8 @@ from pandas import DataFrame
 from snapshot_list import Snapshot
 
 class Transaction:
-  start: Snapshot = None
-  end: Snapshot = None
+  start: Snapshot
+  end: Snapshot
   
   def win(self):
     return self.end.valuation() > self.start.valuation()
@@ -18,21 +18,59 @@ class Transaction:
   
   def profitRate(self):
     return self.profit() / self.start.valuation()
+  
+  def toData(self):
+    return TransactionData(
+      win = self.win(),
+      profit = self.profit(),
+      profitRate = self.profitRate(),
+      
+      startTime = self.start.datetime,
+      startFunds = self.start.funds,
+      startAssets = self.start.assets,
+      startFundsDebt = self.start.fundsDebt,
+      startAssetsDebt = self.start.assetsDebt,
+      startPrice = self.start.price,
+      startAssetsValuation = self.start.assetsValuation(),
+      startDebtValuation = self.start.debtValuation(),
+      startValuation = self.start.valuation(),
+      
+      endTime = self.end.datetime,
+      endFunds = self.end.funds,
+      endAssets = self.end.assets,
+      endFundsDebt = self.end.fundsDebt,
+      endAssetsDebt = self.end.assetsDebt,
+      endPrice = self.end.price,
+      endAssetsValuation = self.end.assetsValuation(),
+      endDebtValuation = self.end.debtValuation(),
+      endValuation = self.end.valuation(),
+    )
 
 @dataclass
-class TransactionX:
-  start: datetime
-  end: datetime
-  startFunds: float = 0
-  startAssets: float = 0
-  startFundsDebt: float = 0
-  startAssetsDebt: float = 0
-  startPrice: float = 0
-  endFunds: float = 0
-  endAssets: float = 0
-  endFundsDebt: float = 0
-  endAssetsDebt: float = 0
-  endPrice: float = 0
+class TransactionData:
+  win: bool
+  profit: float
+  profitRate: float
+  
+  startTime: datetime
+  startFunds: float
+  startAssets: float
+  startFundsDebt: float
+  startAssetsDebt: float
+  startPrice: float
+  startAssetsValuation: float
+  startDebtValuation: float
+  startValuation: float
+  
+  endTime: datetime
+  endFunds: float
+  endAssets: float
+  endFundsDebt: float
+  endAssetsDebt: float
+  endPrice: float
+  endAssetsValuation: float
+  endDebtValuation: float
+  endValuation: float
 
 class TransactionList:
   list: List[Transaction] = []
