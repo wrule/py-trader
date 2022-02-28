@@ -6,17 +6,9 @@ from typing import List
 from pandas import DataFrame
 from snapshot_list import Snapshot
 
-class TransactionX:
-  def __init__(
-    self,
-    start: Snapshot,
-    end: Snapshot,
-  ):
-    self.start = start
-    self.end = end
-
-  start: Snapshot
-  end: Snapshot
+class Transaction:
+  start: Snapshot = None
+  end: Snapshot = None
   
   def win(self):
     return self.end.valuation() > self.start.valuation()
@@ -28,7 +20,7 @@ class TransactionX:
     return self.profit() / self.start.valuation()
 
 @dataclass
-class Transaction:
+class TransactionX:
   start: datetime
   end: datetime
   startFunds: float = 0
@@ -44,38 +36,24 @@ class Transaction:
 
 class TransactionList:
   list: List[Transaction] = []
-  txn = Transaction(0, 0)
+  txn = Transaction()
   started = False
   
   def start(self, snapshot: Snapshot):
     if self.started == False:
-      self.txn.start = snapshot.datetime
-      self.txn.startFunds = snapshot.funds
-      self.txn.startFundsDebt = snapshot.fundsDebt
-      self.txn.startAssets = snapshot.assets
-      self.txn.startAssetsDebt = snapshot.assetsDebt
-      self.txn.startPrice = snapshot.price
+      self.txn.start = snapshot
       self.started = True
   
   def end(self, snapshot: Snapshot):
     if self.started == True:
-      self.txn.end = snapshot.datetime
-      self.txn.endFunds = snapshot.funds
-      self.txn.endFundsDebt = snapshot.fundsDebt
-      self.txn.endAssets = snapshot.assets
-      self.txn.endAssetsDebt = snapshot.assetsDebt
-      self.txn.endPrice = snapshot.price
+      self.txn.end = snapshot
       self.list.append(self.txn)
-      self.txn = Transaction(0, 0)
+      self.txn = Transaction()
       self.started = False
       
+  def last(self, index: int = 0):
+    return self.list[-1]
+  
   def dataframe(self):
-    df = DataFrame(self.list)
-    df['startAssetValuation'] = df.apply(lambda row: row['startFunds'] + row['startAssets'] * row['startPrice'], axis = 1)
-    df['startDebtValuation'] = df.apply(lambda row: row['startFundsDebt'] + row['startAssetsDebt'] * row['startPrice'], axis = 1)
-    df['startValuation'] = df.apply(lambda row: row['startAssetValuation'] - row['startDebtValuation'], axis = 1)
-    df['endAssetValuation'] = df.apply(lambda row: row['endFunds'] + row['endAssets'] * row['endPrice'], axis = 1)
-    df['endDebtValuation'] = df.apply(lambda row: row['endFundsDebt'] + row['endAssetsDebt'] * row['endPrice'], axis = 1)
-    df['endValuation'] = df.apply(lambda row: row['endAssetValuation'] - row['endDebtValuation'], axis = 1)
-    return df
+    pass
 
