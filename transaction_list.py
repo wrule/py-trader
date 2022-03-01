@@ -2,7 +2,6 @@
 from dataclasses import dataclass
 from datetime import datetime
 from typing import List
-
 from pandas import DataFrame
 from snapshot_list import Snapshot
 
@@ -93,5 +92,6 @@ class TransactionList:
     return self.list[-1]
   
   def dataframe(self):
-    pass
-
+    df = DataFrame([item.toData() for item in self.list])
+    df.index = range(len(self.list))
+    return df
