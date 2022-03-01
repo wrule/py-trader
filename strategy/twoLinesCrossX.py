@@ -44,6 +44,13 @@ class TwoLinesCrossX(Strategy):
   
   def prevSlow(self):
     return self.prev(self.slow)
+  
+  position = 1
+  
+  def lastIsWin(self):
+    if self.trader.transactionList.length() >= 1:
+      return self.trader.transactionList.last().win()
+    return True
 
   def watch(self):
     if (
@@ -51,10 +58,14 @@ class TwoLinesCrossX(Strategy):
       self.lastFast() > self.lastSlow()
     ):
       self.trader.start(self.last('Date'), self.last('Close'))
-      self.trader.buy(self.lastRecord(), 1)
+      self.trader.buy(self.lastRecord(), self.position)
     elif (
       self.prevFast() >= self.prevSlow() and
       self.lastFast() < self.lastSlow()
     ):
       self.trader.sell(self.lastRecord(), 1)
       self.trader.end(self.last('Date'), self.last('Close'))
+      if self.lastIsWin():
+        self.position *= 1
+      else:
+        self.position *= 1

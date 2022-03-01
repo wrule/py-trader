@@ -91,6 +91,9 @@ class TransactionList:
   def last(self, index: int = 0):
     return self.list[-1]
   
+  def length(self):
+    return len(self.list)
+  
   def dataframe(self):
     df = DataFrame([item.toData() for item in self.list])
     df.index = range(len(self.list))
