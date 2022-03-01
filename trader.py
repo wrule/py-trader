@@ -15,7 +15,7 @@ class Trader:
     buyFee: float = 0.002,
     sellFee: float = 0.002,
     transaction: bool = True,
-    snapshot: bool = False,
+    snapshot: bool = True,
   ):
     self.funds = funds
     self.assets = assets
