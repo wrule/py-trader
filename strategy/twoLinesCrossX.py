@@ -5,7 +5,7 @@ from pandas import DataFrame
 from strategy.strategy import Strategy
 from trader import Trader
 
-class TwoLinesCross(Strategy):
+class TwoLinesCrossX(Strategy):
   def __init__(
     self,
     trader: Trader,
