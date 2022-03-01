@@ -5,7 +5,7 @@ from pandas import DataFrame
 from strategy.strategy import Strategy
 from trader import Trader
 
-class TwoLinesCrossX(Strategy):
+class TwoLinesCross(Strategy):
   def __init__(
     self,
     trader: Trader,
@@ -52,14 +52,9 @@ class TwoLinesCrossX(Strategy):
     ):
       self.trader.start(self.last('Date'), self.last('Close'))
       self.trader.buy(self.lastRecord(), 1)
-      return
-    if (
+    elif (
       self.prevFast() >= self.prevSlow() and
       self.lastFast() < self.lastSlow()
     ):
       self.trader.sell(self.lastRecord(), 1)
       self.trader.end(self.last('Date'), self.last('Close'))
-      return
-    if self.trader.transactionList.started:
-      pass
-    
