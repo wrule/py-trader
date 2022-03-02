@@ -3,7 +3,7 @@ from pprint import pprint
 from numpy import append
 import pandas as pd
 import pandas_ta as ta
-from tools.yfinance import load
+from tools.yfinance import load, download
 import pprint
 
 if __name__ == '__main__':
@@ -16,6 +16,4 @@ if __name__ == '__main__':
     ],
   )
   df.ta.strategy(ta.CommonStrategy)
-  # print(df.tail(5))
-  print(df.columns)
-# pprint.pprint('123')
+  print(df.tail(10))
