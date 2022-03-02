@@ -15,5 +15,5 @@ if __name__ == '__main__':
       { 'kind': 'sma', 'length': 44, }
     ],
   )
-  df.ta.strategy(ta.CommonStrategy)
+  df.ta.strategy(strategy)
   print(df.tail(10))
