@@ -5,11 +5,14 @@ def load(name: str):
   df.drop('Volume MA', axis = 1, inplace = True)
   df.rename(
     columns = {
-      'time': 'datetime',
-      'Volume': 'volume',
+      'time': 'Date',
+      'open': 'Open',
+      'high': 'High',
+      'low': 'Low',
+      'close': 'Close',
     },
     inplace = True,
   )
-  df.index = pd.to_datetime(df['datetime'], unit = 's')
-  df['datetime'] = df.index
+  df.index = pd.to_datetime(df['Date'], unit = 's')
+  df['Date'] = df.index
   return df
