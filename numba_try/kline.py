@@ -2,14 +2,6 @@ from numba.experimental import jitclass
 
 @jitclass
 class KLine:
-  time: int
-  open: float
-  high: float
-  low: float
-  close: float
-  volume: float
-  closed: bool
-  
   def __init__(
     self,
     time: int,
@@ -27,3 +19,11 @@ class KLine:
     self.close = close
     self.volume = volume
     self.closed = closed
+
+  time: int
+  open: float
+  high: float
+  low: float
+  close: float
+  volume: float
+  closed: bool

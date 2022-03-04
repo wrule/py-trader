@@ -11,11 +11,11 @@ class Strategy:
   hist: List[int]
 
   def __init__(self):
-    pass
-    # self.lastIndex = 0
-    # self.hist = NBList([1])
+    self.lastIndex = 0
+    self.hist = NBList([1])
     
   def show(self):
+    k = KLine(0, 0, 0, 0, 0, 0, False)
     print(self.hist)
 
 

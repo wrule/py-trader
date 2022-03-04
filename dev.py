@@ -21,8 +21,9 @@ if __name__ == '__main__':
   hist = to_dict_list(df)
   trader = Trader()
   strategy = Strategy()
-  oldTime = time.perf_counter()
-  testPerf(strategy)
-  print(time.perf_counter() - oldTime)
+  strategy.show()
+  # oldTime = time.perf_counter()
+  # testPerf(strategy)
+  # print(time.perf_counter() - oldTime)
 
 
