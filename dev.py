@@ -15,4 +15,5 @@ if __name__ == '__main__':
   oldTime = time.perf_counter()
   strategy.Backtesting(hist)
   print(time.perf_counter() - oldTime)
+  print(trader.snapshotList.last().valuation())
 
