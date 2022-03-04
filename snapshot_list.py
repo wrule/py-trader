@@ -29,6 +29,9 @@ class SnapshotList:
   def append(self, snapshot: Snapshot):
     self.list.append(snapshot)
 
+  def last(self, index: int = 0):
+    return self.list[-index - 1]
+
   def dataframe(self):
     df = DataFrame(self.list)
     df.index = pd.to_datetime(df['datetime'])

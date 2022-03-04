@@ -89,7 +89,7 @@ class TransactionList:
       self.started = False
       
   def last(self, index: int = 0):
-    return self.list[-1]
+    return self.list[-index - 1]
   
   def length(self):
     return len(self.list)
