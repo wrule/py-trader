@@ -4,7 +4,7 @@ from numba import jit
 import pandas_ta as ta
 from tools.yfinance import load, to_dict_list
 from trader import Trader
-from nstrategy.strategy import Strategy
+from numba_try.strategy import Strategy
 
 @jit
 def testPerf(
