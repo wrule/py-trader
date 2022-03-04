@@ -56,7 +56,6 @@ class Strategy(ABC):
     self.hist = hist
     for index in range(len(hist)):
       self.lastIndex = index
-      # if self.ready():
-      #   self.watch()
-      # self.trader.log(self.last('Date'), self.last('Close'))
-
+      if self.ready():
+        self.watch()
+      self.trader.log(self.last('Date'), self.last('Close'))
