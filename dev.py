@@ -13,6 +13,15 @@ if __name__ == '__main__':
   trader = Trader()
   strategy = TwoLinesCross(trader, 'SMA_8', 'SMA_44')
   oldTime = time.perf_counter()
-  strategy.Backtesting(hist)
+  # for i in range(20100):
+  #   for j in range(2800):
+  #     pass
+  y = 0
+  while y < 20100:
+    x = 0
+    while x < 2800:
+      x = x + 1
+    y = y + 1
+    # strategy.Backtesting(hist)
   print(time.perf_counter() - oldTime)
-  print(trader.snapshotList.last().valuation())
+  # print(trader.snapshotList.last().valuation())
