@@ -5,23 +5,29 @@ from dataclasses import dataclass
 from numba.typed import List as NBList
 from numba_try.kline import KLine
 from numba_try.trader import Trader
+from abc import ABC, abstractmethod
 
-@jitclass
 class Strategy:
-  lastIndex: int
-  hist: List[int]
   trader: Trader
+  lastIndex: int
+  hist: List[KLine]
 
   def __init__(
     self,
     trader: Trader,
   ):
-    self.lastIndex = 0
-    self.hist = NBList([1])
     self.trader = trader
+    self.lastIndex = 0
     
-  def show(self):
-    k = KLine(0, 0, 0, 0, 0, 0, False)
-    print(self.hist)
+  def Backtesting(
+    self,
+    hist: List[KLine],
+  ):
+    self.hist = hist
+    self.trader.reset()
+    for index in range(len(hist)):
+      self.lastIndex = index
+      # if self.ready():
+      #   self.watch()
 
 

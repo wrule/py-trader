@@ -3,24 +3,16 @@ import time
 from numba import jit
 import pandas_ta as ta
 from tools.yfinance import load, to_dict_list
-from numba_try.strategy import Strategy
 from numba_try.trader import Trader
-
-@jit
-def testPerf(
-  strategy: Strategy,
-):
-  for fast in range(200):
-    for slow in range(fast + 1, 201):
-      pass
+from numba_try.two import Two
 
 if __name__ == '__main__':
   df = load('BTC-USD')
   df.ta.sma(length = 8, append = True)
   df.ta.sma(length = 44, append = True)
   hist = to_dict_list(df)
-  trader = Trader(100, 1, 1)
-  # strategy = Strategy()
+  trader = Trader()
+  strategy = Two(trader)
   # strategy.show()
   # oldTime = time.perf_counter()
   # testPerf(strategy)
