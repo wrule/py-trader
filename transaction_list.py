@@ -72,7 +72,10 @@ class TransactionData:
   endValuation: float
 
 class TransactionList:
-  list: List[Transaction] = []
+  def __init__(self):
+    self.list = []
+  
+  list: List[Transaction]
   txn = Transaction()
   started = False
   

@@ -17,4 +17,4 @@ if __name__ == '__main__':
     strategy.backtesting(hist)
   print(time.perf_counter() - oldTime)
   print(trader.snapshotList.last().valuation())
-  print(len(trader.snapshotList.list))
+  print(trader.transactionList.length())

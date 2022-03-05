@@ -24,7 +24,10 @@ class Snapshot:
     return self.assetsValuation() - self.debtValuation()
 
 class SnapshotList:
-  list: List[Snapshot] = []
+  def __init__(self):
+    self.list = []
+  
+  list: List[Snapshot]
 
   def append(self, snapshot: Snapshot):
     self.list.append(snapshot)
