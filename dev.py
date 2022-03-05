@@ -26,7 +26,7 @@ if __name__ == '__main__':
   tester = Backtester(trader)
   hist = History(NBList(klines))
   oldTime = time.perf_counter()
-  tester.test(hist)
+  tester.test2(hist)
   # kkk()
   print(time.perf_counter() - oldTime)
 
