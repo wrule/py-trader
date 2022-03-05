@@ -1,5 +1,4 @@
 
-import datetime
 import pandas as pd
 from pandas import DataFrame
 from strategy.strategy import Strategy
@@ -21,40 +20,28 @@ class TwoLinesCross(Strategy):
   
   def ready(self):
     return (
-      self.length() >= 2 and
+      self.hist.length() >= 2 and
       self.twoLinesReady()
     )
     
   def twoLinesReady(self):
     return (
-      not pd.isnull(self.lastFast()) and
-      not pd.isnull(self.lastSlow()) and
-      not pd.isnull(self.prevFast()) and
-      not pd.isnull(self.prevSlow())
+      not pd.isnull(self.last().open) and
+      not pd.isnull(self.last().close) and
+      not pd.isnull(self.prev().open) and
+      not pd.isnull(self.prev().close)
     )
-  
-  def lastFast(self):
-    return self.last(self.fast)
-  
-  def lastSlow(self):
-    return self.last(self.slow)
-  
-  def prevFast(self):
-    return self.prev(self.fast)
-  
-  def prevSlow(self):
-    return self.prev(self.slow)
 
   def watch(self):
     if (
-      self.prevFast() <= self.prevSlow() and
-      self.lastFast() > self.lastSlow()
+      self.prev().close <= self.prev().open and
+      self.last().close > self.last().open
     ):
-      self.trader.start(self.last('Date'), self.last('Close'))
-      self.trader.buy(self.lastRecord(), 1)
+      self.trader.start(self.last())
+      self.trader.buy(self.last(), 1)
     elif (
-      self.prevFast() >= self.prevSlow() and
-      self.lastFast() < self.lastSlow()
+      self.prev().close >= self.prev().open and
+      self.last().close < self.last().open
     ):
-      self.trader.sell(self.lastRecord(), 1)
-      self.trader.end(self.last('Date'), self.last('Close'))
+      self.trader.sell(self.last(), 1)
+      self.trader.end(self.last())
