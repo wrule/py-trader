@@ -1,6 +1,6 @@
 from numba.experimental import jitclass
 
-@jitclass
+# @jitclass
 class KLine:
   def __init__(
     self,

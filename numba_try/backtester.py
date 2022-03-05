@@ -3,7 +3,7 @@ from numba.experimental import jitclass
 from numba_try.trader import Trader
 from numba_try.history import History
 
-@jitclass
+# @jitclass
 class Backtester:
   def __init__(
     self,

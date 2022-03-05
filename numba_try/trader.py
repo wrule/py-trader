@@ -1,7 +1,7 @@
 from numba.experimental import jitclass
 from numba_try.kline import KLine
 
-@jitclass
+# @jitclass
 class Trader:
   def __init__(
     self,
