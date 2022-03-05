@@ -17,3 +17,6 @@ class History:
 
   def prev(self):
     return self.last(1)
+
+  def length(self):
+    return len(self.klines)
