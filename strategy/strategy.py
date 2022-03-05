@@ -25,7 +25,7 @@ class Strategy(ABC):
   def prev(self):
     return self.hist.prev()
 
-  def Backtesting(self, hist: History):
+  def backtesting(self, hist: History):
     self.hist = hist
     for index in range(hist.length()):
       self.hist.lastIndex = index
