@@ -13,9 +13,11 @@ from numba import jit
 @jit
 def kkk():
   lastIndex = 0
-  for y in range(20100):
-    for x in range(2724):
-      lastIndex = x * y
+  for z in range(100):
+    for y in range(20100):
+      for x in range(2724):
+        lastIndex = x
+  return lastIndex
 
 if __name__ == '__main__':
   df = load('BTC-USD')
@@ -27,5 +29,4 @@ if __name__ == '__main__':
   tester.test(hist)
   # kkk()
   print(time.perf_counter() - oldTime)
-
 

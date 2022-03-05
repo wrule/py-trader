@@ -1,3 +1,4 @@
+import time
 from numba.experimental import jitclass
 from numba_try.trader import Trader
 from numba_try.history import History
@@ -17,6 +18,8 @@ class Backtester:
     hist: History,
   ):
     lastIndex = 0
-    for y in range(20100):
-      for x in range(2724):
-        lastIndex = x * y
+    for z in range(100):
+      for y in range(20100):
+        for x in range(2724):
+          lastIndex = x
+    return lastIndex
