@@ -17,19 +17,17 @@ class Backtester:
     self,
     hist: History, 
   ):
-    lastIndex = 0
-    for z in range(100):
-      for y in range(20100):
-        lastIndex = self.test(hist)
-    return lastIndex
+    result = 0
+    for y in range(20100):
+      result = result + self.test(hist)
+    return result
   
   def test(
     self,
     hist: History,
   ):
-    lastIndex = 0
-    for z in range(100):
-      for y in range(20100):
-        for x in range(2724):
-          lastIndex = x
-    return lastIndex
+    result = 0
+    for lastIndex in range(len(hist.klines)):
+      hist.lastIndex = lastIndex
+      result = result + hist.last().close
+    return result
