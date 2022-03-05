@@ -7,7 +7,7 @@ from datetime import datetime
 
 @dataclass
 class Snapshot:
-  datetime: datetime
+  time: datetime
   funds: float = 0
   fundsDebt: float = 0
   assets: float = 0
@@ -34,7 +34,7 @@ class SnapshotList:
 
   def dataframe(self):
     df = DataFrame(self.list)
-    df.index = pd.to_datetime(df['datetime'])
+    df.index = pd.to_datetime(df['time'])
     df['assetsValuation'] = [item.assetsValuation() for item in self.list]
     df['debtValuation'] = [item.debtValuation() for item in self.list]
     df['valuation'] = [item.valuation() for item in self.list]
