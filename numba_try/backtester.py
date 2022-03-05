@@ -20,8 +20,7 @@ class Backtester:
     lastIndex = 0
     for z in range(100):
       for y in range(20100):
-        for x in range(2724):
-          lastIndex = x
+        lastIndex = self.test(hist)
     return lastIndex
   
   def test(
