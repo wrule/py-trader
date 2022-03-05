@@ -3,7 +3,7 @@ from typing import List
 from numba.experimental import jitclass
 from numba_try.kline import KLine
 
-# @jitclass
+@jitclass
 class History:
   def __init__(
     self,

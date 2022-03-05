@@ -3,7 +3,7 @@ from numba.experimental import jitclass
 from numba_try.trader import Trader
 from numba_try.history import History
 
-# @jitclass
+@jitclass
 class Backtester:
   def __init__(
     self,
@@ -29,5 +29,14 @@ class Backtester:
     result = 0
     for lastIndex in range(len(hist.klines)):
       hist.lastIndex = lastIndex
-      result = result + hist.last().close
+      if (
+        hist.prev().close <= hist.prev().open and
+        hist.last().close > hist.prev().open
+      ):
+        result = result + hist.last().close
+      if (
+        hist.prev().close >= hist.prev().open and
+        hist.last().close < hist.prev().open
+      ):
+        result = result + hist.last().open
     return result

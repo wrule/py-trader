@@ -24,7 +24,7 @@ if __name__ == '__main__':
   klines = to_kline_list(df)
   trader = Trader()
   tester = Backtester(trader)
-  hist = History(klines)
+  hist = History(NBList(klines))
   oldTime = time.perf_counter()
   a = tester.test2(hist)
   # kkk()
