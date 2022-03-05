@@ -30,4 +30,4 @@ if __name__ == '__main__':
   # kkk()
   print(time.perf_counter() - oldTime)
   print(a)
-
+# 放弃numba
