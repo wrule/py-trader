@@ -9,8 +9,8 @@ from datetime import datetime
 class Snapshot:
   datetime: datetime
   funds: float = 0
-  assets: float = 0
   fundsDebt: float = 0
+  assets: float = 0
   assetsDebt: float = 0
   price: float = 0
   

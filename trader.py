@@ -1,7 +1,3 @@
-
-from datetime import datetime
-from typing import Any, Dict
-
 from kline import KLine
 from snapshot_list import Snapshot, SnapshotList
 from transaction_list import TransactionList
@@ -36,40 +32,36 @@ class Trader:
     self.snapshotList = SnapshotList()
     self.transactionList = TransactionList()
   
-  def makeSnapshot(
+  def snapshot(
     self,
-    datetime: datetime,
-    price: float,
+    kline: KLine,
   ):
     return Snapshot(
-      datetime,
+      kline.time,
       self.funds,
-      self.assets,
       self.fundsDebt,
+      self.assets,
       self.assetsDebt,
-      price,
+      kline.close,
     )
   
   def start(
     self,
-    datetime: datetime,
-    price: float,
+    kline: KLine,
   ):
-    self.transactionList.start(self.makeSnapshot(datetime, price))
+    self.transactionList.start(self.snapshot(kline))
   
   def end(
     self,
-    datetime: datetime,
-    price: float,
+    kline: KLine,
   ):
-    self.transactionList.end(self.makeSnapshot(datetime, price))
+    self.transactionList.end(self.snapshot(kline))
     
-  def log(
+  def record(
     self,
-    datetime: datetime,
-    price: float,
+    kline: KLine,
   ):
-    self.snapshotList.append(self.makeSnapshot(datetime, price))
+    self.snapshotList.append(self.snapshot(kline))
   
   def buy(
     self,
