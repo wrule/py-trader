@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 import datetime
+from typing import Any, Dict
 
 @dataclass
 class KLine:
@@ -10,3 +11,4 @@ class KLine:
   close: float
   volume: float
   closed: bool
+  data: Dict[str, Any]

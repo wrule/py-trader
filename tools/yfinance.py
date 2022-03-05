@@ -31,6 +31,7 @@ def to_kline_list(df: DataFrame):
       close = item['Close'],
       volume = item['Volume'],
       closed = True,
+      data = { },
     ) for item in dict_list
   ]
 

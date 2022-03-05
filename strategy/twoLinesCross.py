@@ -19,18 +19,18 @@ class TwoLinesCross(Strategy):
   slow: str
   
   def ready(self):
-    return self.hist.length() >= 2
+    return self.hist.length() >= 44
 
   def watch(self):
     if (
-      self.prev().close <= self.prev().open and
-      self.last().close > self.last().open
+      self.prev().data[self.fast] <= self.prev().data[self.slow] and
+      self.last().data[self.fast] > self.last().data[self.slow]
     ):
       self.trader.start(self.last())
       self.trader.buy(self.last(), 1)
     elif (
-      self.prev().close >= self.prev().open and
-      self.last().close < self.last().open
+      self.prev().data[self.fast] >= self.prev().data[self.slow] and
+      self.last().data[self.fast] < self.last().data[self.slow]
     ):
       self.trader.sell(self.last(), 1)
       self.trader.end(self.last())
