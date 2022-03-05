@@ -1,4 +1,5 @@
 import time
+from numba import prange
 from numba.experimental import jitclass
 from numba_try.trader import Trader
 from numba_try.history import History
