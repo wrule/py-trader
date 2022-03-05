@@ -24,20 +24,20 @@ class Transaction:
       profit = self.profit(),
       profitRate = self.profitRate(),
       
-      startTime = self.start.datetime,
+      startTime = self.start.time,
       startFunds = self.start.funds,
-      startAssets = self.start.assets,
       startFundsDebt = self.start.fundsDebt,
+      startAssets = self.start.assets,
       startAssetsDebt = self.start.assetsDebt,
       startPrice = self.start.price,
       startAssetsValuation = self.start.assetsValuation(),
       startDebtValuation = self.start.debtValuation(),
       startValuation = self.start.valuation(),
       
-      endTime = self.end.datetime,
+      endTime = self.end.time,
       endFunds = self.end.funds,
-      endAssets = self.end.assets,
       endFundsDebt = self.end.fundsDebt,
+      endAssets = self.end.assets,
       endAssetsDebt = self.end.assetsDebt,
       endPrice = self.end.price,
       endAssetsValuation = self.end.assetsValuation(),
@@ -53,8 +53,8 @@ class TransactionData:
   
   startTime: datetime
   startFunds: float
-  startAssets: float
   startFundsDebt: float
+  startAssets: float
   startAssetsDebt: float
   startPrice: float
   startAssetsValuation: float
@@ -63,8 +63,8 @@ class TransactionData:
   
   endTime: datetime
   endFunds: float
-  endAssets: float
   endFundsDebt: float
+  endAssets: float
   endAssetsDebt: float
   endPrice: float
   endAssetsValuation: float
@@ -96,5 +96,5 @@ class TransactionList:
   
   def dataframe(self):
     df = DataFrame([item.toData() for item in self.list])
-    df.index = range(len(self.list))
+    df.index = range(self.length())
     return df
