@@ -18,6 +18,12 @@ class Strategy(ABC):
   @abstractmethod
   def watch(self):
     pass
+  
+  def last(self, index: int = 0):
+    return self.hist.last(index)
+
+  def prev(self):
+    return self.hist.prev()
 
   def Backtesting(self, hist: History):
     self.hist = hist
