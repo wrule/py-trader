@@ -19,18 +19,7 @@ class TwoLinesCross(Strategy):
   slow: str
   
   def ready(self):
-    return (
-      self.hist.length() >= 2 and
-      self.twoLinesReady()
-    )
-    
-  def twoLinesReady(self):
-    return (
-      not pd.isnull(self.last().open) and
-      not pd.isnull(self.last().close) and
-      not pd.isnull(self.prev().open) and
-      not pd.isnull(self.prev().close)
-    )
+    return self.hist.length() >= 2
 
   def watch(self):
     if (
