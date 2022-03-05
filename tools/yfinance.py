@@ -1,10 +1,8 @@
 
 import pandas as pd
-from pandas import DataFrame
 import yfinance as yf
-from numba_try.kline import KLine
-from datetime import datetime
-from numba import types
+from pandas import DataFrame
+from kline import KLine
 
 def download(symbol: str):
   print(f'{symbol}数据下载中...')
@@ -22,12 +20,11 @@ def load(symbol: str) -> DataFrame:
 def to_dict_list(df: DataFrame):
   return df.to_dict('records')
 
-
 def to_kline_list(df: DataFrame):
   dict_list = to_dict_list(df)
   return [
     KLine(
-      time = int(item['Date'].to_pydatetime().timestamp()),
+      time = item['Date'].to_pydatetime(),
       open = item['Open'],
       high = item['High'],
       low = item['Low'],

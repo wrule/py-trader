@@ -1,11 +1,12 @@
 from dataclasses import dataclass
+import datetime
 
 @dataclass
 class KLine:
-  time: int
+  time: datetime
   open: float
-  close: float
   high: float
   low: float
+  close: float
   volume: float
   closed: bool
