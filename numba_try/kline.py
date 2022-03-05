@@ -1,11 +1,10 @@
-from datetime import datetime
 from numba.experimental import jitclass
 
 @jitclass
 class KLine:
   def __init__(
     self,
-    time: datetime,
+    time: int,
     open: float,
     high: float,
     low: float,
@@ -21,7 +20,7 @@ class KLine:
     self.volume = volume
     self.closed = closed
 
-  time: datetime
+  time: int
   open: float
   high: float
   low: float

@@ -27,7 +27,7 @@ def to_kline_list(df: DataFrame):
   dict_list = to_dict_list(df)
   return [
     KLine(
-      time = datetime.now(),
+      time = int(item['Date'].to_pydatetime().timestamp()),
       open = item['Open'],
       high = item['High'],
       low = item['Low'],
