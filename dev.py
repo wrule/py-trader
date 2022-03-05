@@ -1,8 +1,9 @@
 #!/opt/homebrew/bin/python3
+from datetime import datetime
 import time
 from numba import jit
 import pandas_ta as ta
-from tools.yfinance import load, to_dict_list
+from tools.yfinance import load, to_kline_list
 from numba_try.trader import Trader
 from numba_try.backtester import Backtester
 from numba_try.kline import KLine
@@ -11,13 +12,12 @@ from numba.typed import List as NBList
 
 if __name__ == '__main__':
   df = load('BTC-USD')
-  df.ta.sma(length = 8, append = True)
-  df.ta.sma(length = 44, append = True)
-  hist = to_dict_list(df)
-  trader = Trader()
-  tester = Backtester(trader)
-  kline = KLine(0, 0, 0, 0, 0, 0, False)
-  hist = History(NBList([kline, kline, kline]))
-  tester.test(hist)
+  d = datetime.now()
+  k = KLine(d, 0, 0, 0, 0, 0, True)
+  # klines = to_kline_list(df)
+  # trader = Trader()
+  # tester = Backtester(trader)
+  # hist = History(NBList(klines))
+  # tester.test(hist)
 
 
