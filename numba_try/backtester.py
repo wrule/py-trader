@@ -16,6 +16,7 @@ class Backtester:
     self,
     hist: History,
   ):
-    for lastIndex in range(len(hist.klines)):
-      hist.lastIndex = lastIndex
-      print(hist.length())
+    lastIndex = 0
+    for y in range(20100):
+      for x in range(2724):
+        lastIndex = x * y
