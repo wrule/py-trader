@@ -1,22 +1,18 @@
-from typing import List
-from kline import KLine
+from typing import Any, Dict, List
 
 class History:
-  def __init__(
-    self,
-    klines: List[KLine],
-  ):
-    self.klines = klines
+  def __init__(self, data: List[Dict[str, Any]]):
+    self.data = data
     self.lastIndex = 0
   
-  klines: List[KLine]
+  data: List[Dict[str, Any]]
   lastIndex: int
   
   def last(self, index: int = 0):
-    return self.klines[self.lastIndex - index]
+    return self.data[self.lastIndex - index]
 
   def prev(self):
     return self.last(1)
 
   def length(self):
-    return len(self.klines)
+    return len(self.data)
