@@ -1,6 +1,3 @@
-
-import pandas as pd
-from pandas import DataFrame
 from strategy.strategy import Strategy
 from trader import Trader
 
@@ -23,14 +20,14 @@ class TwoLinesCross(Strategy):
 
   def watch(self):
     if (
-      self.prev().data[self.fast] <= self.prev().data[self.slow] and
-      self.last().data[self.fast] > self.last().data[self.slow]
+      self.prev()[self.fast] <= self.prev()[self.slow] and
+      self.last()[self.fast] > self.last()[self.slow]
     ):
       self.trader.start(self.last())
       self.trader.buy(self.last(), 1)
     elif (
-      self.prev().data[self.fast] >= self.prev().data[self.slow] and
-      self.last().data[self.fast] < self.last().data[self.slow]
+      self.prev()[self.fast] >= self.prev()[self.slow] and
+      self.last()[self.fast] < self.last()[self.slow]
     ):
       self.trader.sell(self.last(), 1)
       self.trader.end(self.last())
