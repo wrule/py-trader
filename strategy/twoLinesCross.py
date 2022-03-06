@@ -1,5 +1,6 @@
 from strategy.strategy import Strategy
 from trader import Trader
+import math
 
 class TwoLinesCross(Strategy):
   def __init__(
@@ -16,7 +17,12 @@ class TwoLinesCross(Strategy):
   slow: str
   
   def ready(self):
-    return self.hist.length() >= 55
+    return (
+      not math.isnan(self.prev()[self.fast]) and
+      not math.isnan(self.prev()[self.slow]) and
+      not math.isnan(self.last()[self.fast]) and
+      not math.isnan(self.last()[self.slow])
+    )
 
   def watch(self):
     if (
