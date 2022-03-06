@@ -16,16 +16,10 @@ if __name__ == '__main__':
     d = 7,
     append = True,
   )
-  for size in range(2, 201):
-    df.ta.sma(length = size, append = True)
-  df['SMA_1'] = df['Close']
   hist = History(to_dict_list(df))
-  trader = Trader()
-  oldTime = time.perf_counter()
-  for fast in range(1, 200):
-    for slow in range(fast + 1, 201):
-      strategy = TwoLinesCross(trader, f'SMA_{fast}', f'SMA_{slow}')
-      strategy.backtesting(hist)
-  print(time.perf_counter() - oldTime)
-  print(trader.snapshotList.last().valuation())
+  trader = Trader(100, 0.0015, 0.0015)
+  strategy = TwoLinesCross(trader, 'STOCHRSIk_21_21_7_7', 'STOCHRSId_21_21_7_7')
+  strategy.backtesting(hist)
   print(trader.transactionList.length())
+  print(trader.snapshotList.last().valuation())
+  trader.transactionList.dataframe().to_excel('c.xlsx')

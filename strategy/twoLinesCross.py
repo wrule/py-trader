@@ -16,7 +16,7 @@ class TwoLinesCross(Strategy):
   slow: str
   
   def ready(self):
-    return self.hist.length() >= 44
+    return self.hist.length() >= 55
 
   def watch(self):
     if (
