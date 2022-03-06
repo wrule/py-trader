@@ -9,6 +9,13 @@ import time
 
 if __name__ == '__main__':
   df = load('BTC-USD')
+  df.ta.stochrsi(
+    length = 21,
+    rsi_length = 21,
+    k = 7,
+    d = 7,
+    append = True,
+  )
   for size in range(2, 201):
     df.ta.sma(length = size, append = True)
   df['SMA_1'] = df['Close']
