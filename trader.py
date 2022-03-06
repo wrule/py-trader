@@ -1,4 +1,4 @@
-from kline import KLine
+from typing import Any, Dict
 from snapshot_list import Snapshot, SnapshotList
 from transaction_list import TransactionList
 
@@ -32,67 +32,55 @@ class Trader:
     self.snapshotList = SnapshotList()
     self.transactionList = TransactionList()
   
-  def snapshot(
-    self,
-    kline: KLine,
-  ):
+  def snapshot(self, data: Dict[str, Any]):
     return Snapshot(
-      kline.time,
+      data['Date'],
       self.funds,
       self.fundsDebt,
       self.assets,
       self.assetsDebt,
-      kline.close,
+      data['Close'],
     )
   
-  def start(
-    self,
-    kline: KLine,
-  ):
-    self.transactionList.start(self.snapshot(kline))
+  def start(self, data: Dict[str, Any]):
+    self.transactionList.start(self.snapshot(data))
   
-  def end(
-    self,
-    kline: KLine,
-  ):
-    self.transactionList.end(self.snapshot(kline))
+  def end(self, data: Dict[str, Any]):
+    self.transactionList.end(self.snapshot(data))
     
-  def record(
-    self,
-    kline: KLine,
-  ):
-    self.snapshotList.append(self.snapshot(kline))
+  def record(self, data: Dict[str, Any]):
+    self.snapshotList.append(self.snapshot(data))
   
   def buy(
     self,
-    kline: KLine,
+    data: Dict[str, Any],
     percent: int = 1,
   ):
     if (
       self.funds > 0 and
       percent > 0 and
       percent <= 1 and
-      kline.close > 0
+      data['Close'] > 0
     ):
       useFunds = self.funds * percent
       self.funds -= useFunds
-      self.assets += (useFunds / kline.close) * (1 - self.buyFee)
+      self.assets += (useFunds / data['Close']) * (1 - self.buyFee)
       return True
     return False
   
   def sell(
     self,
-    kline: KLine,
+    data: Dict[str, Any],
     percent: int = 1,
   ):
     if (
       self.assets > 0 and
       percent > 0 and
       percent <= 1 and
-      kline.close >= 0
+      data['Close'] >= 0
     ):
       useAssets = self.assets * percent
       self.assets -= useAssets
-      self.funds += (useAssets * kline.close) * (1 - self.sellFee)
+      self.funds += (useAssets * data['Close']) * (1 - self.sellFee)
       return True
     return False
