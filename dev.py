@@ -24,3 +24,4 @@ if __name__ == '__main__':
   })
   print(scope.random())
   print(scope.breadth())
+  print(scope.center())
