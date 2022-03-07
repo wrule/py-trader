@@ -11,7 +11,7 @@ from random import randrange
 
 
 if __name__ == '__main__':
-  
+  maxv = 0
   for i in range(1000):
     df = load('BINANCE_BTCUSDT, 120_cd3a1')
     length = randrange(2, 101)
@@ -29,7 +29,11 @@ if __name__ == '__main__':
     trader = Trader(100, 0.0015, 0.0015)
     strategy = TwoLinesCross(trader, f'STOCHRSIk_{length}_{rsi_length}_{k}_{d}', f'STOCHRSId_{length}_{rsi_length}_{k}_{d}')
     strategy.backtesting(hist)
-    print(i, trader.snapshotList.last().valuation(), trader.transactionList.length())
+    valuation = trader.snapshotList.last().valuation()
+    tlen = trader.transactionList.length()
+    if tlen >= 400 and valuation > maxv:
+      maxv = valuation
+      print(i, valuation, tlen)
   
   
   
