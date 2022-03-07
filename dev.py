@@ -9,6 +9,8 @@ from strategy.twoLinesCross import TwoLinesCross
 from strategy.history import History
 import time
 from random import randrange
+import matplotlib.pyplot as plt
+import numpy as np
 
 data_df = load('BINANCE_BTCUSDT, 120_cd3a1')
 
@@ -33,7 +35,17 @@ if __name__ == '__main__':
     strategy.backtesting(hist)
     print(trader.snapshotList.last().valuation())
     trader.transactionList.dataframe().to_excel('2.xlsx')
+    fig, ax = plt.subplots()
+    ax.plot(
+      trader.snapshotList.dataframe()['time'],
+      trader.snapshotList.dataframe()['valuation'],
+    )
+    plt.show()
     break
+  
+
+
+
     # valuation = trader.snapshotList.last().valuation()
     # tlen = trader.transactionList.length()
     # if tlen >= 400 and valuation > maxv:
