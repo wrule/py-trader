@@ -1,6 +1,5 @@
 from typing import Dict, Tuple
 from random import randrange
-import math
 
 IntScope = Dict[str, Tuple[int, int]]
 

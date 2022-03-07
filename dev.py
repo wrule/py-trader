@@ -18,9 +18,9 @@ data_df = load('BINANCE_BTCUSDT, 120_cd3a1')
 
 if __name__ == '__main__':
   scope = IntSpace({
-    'p1': [1, 2],
-    'p2': [1, 2],
-    'p3': [3, 4],
+    'p1': [1, 200],
+    'p2': [1, 200],
+    'p3': [1, 200],
   })
   print(scope.random())
   print(scope.breadth())
