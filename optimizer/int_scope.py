@@ -1,5 +1,6 @@
 from typing import Dict, Tuple
 from random import randrange
+import math
 
 IntScope = Dict[str, Tuple[int, int]]
 
@@ -10,7 +11,10 @@ class IntSpace:
   scope: IntScope
   
   def breadth(self):
-    return 0
+    result = 1
+    for value in self.scope.values():
+      result = result * (abs(value[1] - value[0]) + 1)
+    return result
   
   def random(self):
     result = { }

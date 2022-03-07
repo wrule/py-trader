@@ -23,3 +23,4 @@ if __name__ == '__main__':
     'p3': [3, 4],
   })
   print(scope.random())
+  print(scope.breadth())
