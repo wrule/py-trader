@@ -41,11 +41,13 @@ class IntSpace:
       sum += math.pow(v1 - v2, 2)
     return math.sqrt(sum)
   
-  def intersection(self, space) -> IntScope:
-    otherScope = space.scope
+  def intersection(self, space):
     result = { }
+    otherScope = space.scope
     for key in self.scope.keys():
       [min1, max1] = self.scope[key]
       [min2, max2] = otherScope[key]
-      print(key)
+      min = min1 if min1 > min2 else min2
+      max = max1 if max1 < max2 else max2
+      result[key] = (min, max)
     return IntSpace(result)

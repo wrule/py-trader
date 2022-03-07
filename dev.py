@@ -20,10 +20,11 @@ data_df = load('BINANCE_BTCUSDT, 120_cd3a1')
 if __name__ == '__main__':
   scope1 = IntSpace({
     'p1': [1, 200],
-    'p2': [1, 200],
+    'p2': [-101, 200],
   })
   scope2 = IntSpace({
     'p1': [1, 200],
-    'p2': [1, 200],
+    'p2': [-100, 150],
   })
-  print(scope1.distance(scope2.center()))
+  i = scope1.intersection(scope2)
+  print(i.scope)
