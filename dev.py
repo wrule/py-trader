@@ -34,7 +34,7 @@ if __name__ == '__main__':
     tlen = trader.transactionList.length()
     if tlen >= 400 and valuation > maxv:
       maxv = valuation
-      print(i, valuation, tlen)
+      print(i, valuation, tlen, [length, rsi_length, k, d])
   
   
   
