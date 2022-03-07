@@ -13,18 +13,8 @@ import time
 from random import randrange
 import matplotlib.pyplot as plt
 import numpy as np
-from optimizer.int_scope import IntSpace
 
 data_df = load('BINANCE_BTCUSDT, 120_cd3a1')
 
 if __name__ == '__main__':
-  scope1 = IntSpace({
-    'p1': [1, 200],
-    'p2': [-101, 200],
-  })
-  scope2 = IntSpace({
-    'p1': [1, 200],
-    'p2': [-100, 150],
-  })
-  i = scope1.intersection(scope2)
-  print(i.scope)
+  pass
