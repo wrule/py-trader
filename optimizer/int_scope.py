@@ -5,8 +5,8 @@ import math
 IntPoint = Dict[str, int]
 IntScope = Dict[str, Tuple[int, int]]
 
-def point_to_scope(point: IntPoint, radius: int) -> IntScope:
-  pass
+def point_distance(point1: IntPoint, point2: IntPoint) -> int:
+  return 0
 
 class IntSpace:
   def __init__(self, scope: IntScope):
@@ -51,3 +51,11 @@ class IntSpace:
       max = max1 if max1 < max2 else max2
       result[key] = (min, max)
     return IntSpace(result)
+
+def point_to_space(point: IntPoint, diameter: int) -> IntSpace:
+  scope = { }
+  left = int((diameter - 1) / 2)
+  right = diameter - left
+  for key, value in point.items():
+    scope[key] = (value - left, value + right)
+  return IntSpace(scope)
