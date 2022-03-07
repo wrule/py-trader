@@ -5,9 +5,6 @@ import math
 IntPoint = Dict[str, int]
 IntScope = Dict[str, Tuple[int, int]]
 
-def point_distance(point1: IntPoint, point2: IntPoint) -> int:
-  return 0
-
 class IntSpace:
   def __init__(self, scope: IntScope):
     self.scope = scope
@@ -59,3 +56,11 @@ def point_to_space(point: IntPoint, diameter: int) -> IntSpace:
   for key, value in point.items():
     scope[key] = (value - left, value + right)
   return IntSpace(scope)
+
+def point_distance(point1: IntPoint, point2: IntPoint) -> int:
+  sum = 0
+  for key in point1.keys():
+    v1 = point1[key]
+    v2 = point2[key]
+    sum += math.pow(v1 - v2, 2)
+  return math.sqrt(sum)
