@@ -1,4 +1,5 @@
 #!/opt/homebrew/bin/python3
+import math
 from operator import mod
 from typing import List
 from numpy import append
@@ -17,11 +18,12 @@ from optimizer.int_scope import IntSpace
 data_df = load('BINANCE_BTCUSDT, 120_cd3a1')
 
 if __name__ == '__main__':
-  scope = IntSpace({
+  scope1 = IntSpace({
     'p1': [1, 200],
     'p2': [1, 200],
-    'p3': [1, 200],
   })
-  print(scope.random())
-  print(scope.breadth())
-  print(scope.center())
+  scope2 = IntSpace({
+    'p1': [1, 200],
+    'p2': [1, 200],
+  })
+  print(scope1.distance(scope2.center()))
