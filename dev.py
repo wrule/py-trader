@@ -11,15 +11,15 @@ import time
 if __name__ == '__main__':
   df = load('BINANCE_BTCUSDT, 120_cd3a1')
   df.ta.stochrsi(
-    length = 28,
-    rsi_length = 21,
-    k = 14,
-    d = 14,
+    length = 35,
+    rsi_length = 28,
+    k = 21,
+    d = 21,
     append = True,
   )
   hist = History(to_dict_list(df))
-  trader = Trader(100, 0.001, 0.001)
-  strategy = TwoLinesCross(trader, 'STOCHRSIk_28_21_14_14', 'STOCHRSId_28_21_14_14')
+  trader = Trader(100, 0.0015, 0.0015)
+  strategy = TwoLinesCross(trader, 'STOCHRSIk_35_28_21_21', 'STOCHRSId_35_28_21_21')
   strategy.backtesting(hist)
   print(trader.transactionList.length())
   print(trader.snapshotList.last().valuation())
