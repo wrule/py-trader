@@ -5,6 +5,8 @@ import math
 IntPoint = Dict[str, int]
 IntScope = Dict[str, Tuple[int, int]]
 
+def point_to_scope(point: IntPoint, radius: int) -> IntScope:
+  pass
 
 class IntSpace:
   def __init__(self, scope: IntScope):
@@ -38,3 +40,12 @@ class IntSpace:
       v2 = center[key]
       sum += math.pow(v1 - v2, 2)
     return math.sqrt(sum)
+  
+  def intersection(self, space) -> IntScope:
+    otherScope = space.scope
+    result = { }
+    for key in self.scope.keys():
+      [min1, max1] = self.scope[key]
+      [min2, max2] = otherScope[key]
+      print(key)
+    return IntSpace(result)
