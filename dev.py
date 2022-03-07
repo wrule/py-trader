@@ -11,9 +11,9 @@ from random import randrange
 
 
 if __name__ == '__main__':
-  df = load('BINANCE_BTCUSDT, 120_cd3a1')
-  trader = Trader(100, 0.0015, 0.0015)
+  
   for i in range(1000):
+    df = load('BINANCE_BTCUSDT, 120_cd3a1')
     length = randrange(2, 101)
     rsi_length = randrange(2, 101)
     k = randrange(2, 81)
@@ -26,9 +26,10 @@ if __name__ == '__main__':
       append = True,
     )
     hist = History(to_dict_list(df))
+    trader = Trader(100, 0.0015, 0.0015)
     strategy = TwoLinesCross(trader, f'STOCHRSIk_{length}_{rsi_length}_{k}_{d}', f'STOCHRSId_{length}_{rsi_length}_{k}_{d}')
     strategy.backtesting(hist)
-    print(trader.snapshotList.last().valuation(), trader.transactionList.length())
+    print(i, trader.snapshotList.last().valuation(), trader.transactionList.length())
   
   
   
