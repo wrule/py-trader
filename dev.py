@@ -14,6 +14,7 @@ import time
 from random import randrange
 import matplotlib.pyplot as plt
 import numpy as np
+from optimizer.int_space import IntSpace
 
 src_df = load('BINANCE_BTCUSDT, 120_cd3a1')
 
@@ -38,5 +39,14 @@ def srsi_backtesting(
   return trader.snapshotList.last().valuation()
   
 if __name__ == '__main__':
-  a = srsi_backtesting(49, 8, 8, 27)
-  print(a)
+  space = IntSpace({
+    'length': (2, 200),
+    'rsi_length': (2, 200),
+    'k': (2, 200),
+    'd': (2, 200),
+  })
+  while True:
+    rdm = space.random()
+    print(rdm)
+    result = srsi_backtesting(**rdm)
+    print(result)
