@@ -29,14 +29,8 @@ class IntSpace:
       result[key] = randrange(value[0], value[1] + 1)
     return result
 
-  def distance(self, center: IntPoint) -> int:
-    myCenter = self.center()
-    sum = 0
-    for key in myCenter.keys():
-      v1 = myCenter[key]
-      v2 = center[key]
-      sum += math.pow(v1 - v2, 2)
-    return math.sqrt(sum)
+  def distance(self, space) -> int:
+    return point_distance(self.center(), space.center())
   
   def intersection(self, space):
     result = { }
