@@ -1,4 +1,5 @@
 #!/opt/homebrew/bin/python3
+from operator import mod
 from numpy import append
 import pandas_ta as ta
 from tools.yfinance import to_dict_list
@@ -35,6 +36,8 @@ if __name__ == '__main__':
     if tlen >= 400 and valuation > maxv:
       maxv = valuation
       print(i, valuation, tlen, [length, rsi_length, k, d])
+    if i % 100 == 0:
+      print(i)
   
   
   
