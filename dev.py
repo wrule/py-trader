@@ -9,11 +9,12 @@ from strategy.history import History
 import time
 from random import randrange
 
+data_df = load('BINANCE_BTCUSDT, 120_cd3a1')
 
 if __name__ == '__main__':
   maxv = 0
-  for i in range(1000):
-    df = load('BINANCE_BTCUSDT, 120_cd3a1')
+  for i in range(10000):
+    df = data_df.copy()
     length = randrange(2, 101)
     rsi_length = randrange(2, 101)
     k = randrange(2, 81)
