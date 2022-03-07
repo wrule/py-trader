@@ -1,5 +1,6 @@
 #!/opt/homebrew/bin/python3
 from operator import mod
+from typing import List
 from numpy import append
 import pandas_ta as ta
 from tools.yfinance import to_dict_list
@@ -35,12 +36,12 @@ if __name__ == '__main__':
     strategy.backtesting(hist)
     print(trader.snapshotList.last().valuation())
     trader.transactionList.dataframe().to_excel('2.xlsx')
-    fig, ax = plt.subplots()
-    ax.plot(
-      trader.snapshotList.dataframe()['time'],
-      trader.snapshotList.dataframe()['valuation'],
-    )
-    plt.show()
+    # fig, ax = plt.subplots()
+    # ax.plot(
+    #   trader.snapshotList.dataframe()['time'],
+    #   trader.snapshotList.dataframe()['valuation'],
+    # )
+    # plt.show()
     break
   
 
