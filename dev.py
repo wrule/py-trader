@@ -46,17 +46,16 @@ def kkk(*args):
 k = kkk
   
 if __name__ == '__main__':
-  a = 7
-  b = [1, 5, 10]
-  index = bisect(b, a)
-  b.insert(index, a)
-  print(b)
-  # space = IntSpace({
-  #   'length': (2, 200),
-  #   'rsi_length': (2, 200),
-  #   'k': (2, 200),
-  #   'd': (2, 200),
-  # })
-  # rd = Random(space)
-  # rd.explore(srsi_backtesting)
+  # num = 6
+  # list = [10, 5, 1]
+  # index = bisect(list, num)
+  # print(index)
+  space = IntSpace({
+    'length': (2, 200),
+    'rsi_length': (2, 200),
+    'k': (2, 200),
+    'd': (2, 200),
+  })
+  rd = Random(space)
+  rd.explore(srsi_backtesting)
 
