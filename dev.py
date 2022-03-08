@@ -15,6 +15,7 @@ from random import randrange
 import matplotlib.pyplot as plt
 import numpy as np
 from optimizer.int_space import IntSpace
+from optimizer.int_random import Random
 
 src_df = load('BINANCE_BTCUSDT, 120_cd3a1')
 
@@ -45,8 +46,10 @@ if __name__ == '__main__':
     'k': (2, 200),
     'd': (2, 200),
   })
-  while True:
-    rdm = space.random()
-    print(rdm)
-    result = srsi_backtesting(**rdm)
-    print(result)
+  rd = Random(space)
+  rd.explore(srsi_backtesting)
+  # while True:
+  #   rdm = space.random()
+  #   print(rdm)
+  #   result = srsi_backtesting(**rdm)
+  #   print(result)
