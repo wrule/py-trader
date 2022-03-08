@@ -1,6 +1,6 @@
 
 from typing import List, Tuple
-from int_space import IntPoint
+from optimizer.int_space import IntPoint
 
 Record = Tuple[IntPoint, float, bool]
 

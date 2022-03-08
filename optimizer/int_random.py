@@ -2,7 +2,7 @@ from collections.abc import Callable
 from typing import List, Tuple
 from optimizer.int_space import IntPoint, IntSpace
 from bisect import bisect
-from int_ranking import Record
+from optimizer.int_ranking import Record, IntRanking
 
 def rankingPush(
   ranking: List[Tuple[IntPoint, float]],
@@ -41,11 +41,12 @@ class Random:
     space: IntSpace,
     func: Callable[..., float],
   ):
-    ranking: List[Record] = []
+    ranking = IntRanking()
     for i in range(self.batchSize):
       point = space.random()
       score = func(**point)
-      rankingPush(ranking, point, score)
+      ranking.try_push(point, score)
+      print(i)
     return ranking
   
   
@@ -53,11 +54,6 @@ class Random:
     self,
     func: Callable[..., float],
   ):
-    while True:
-      for i in range(self.batchSize):
-        point = self.space.random()
-        score = func(**point)
-        rankingPush(self.ranking, point, score, 5)
-        print(i)
-      print([x[1] for x in self.ranking])
+    ranking = self.spaceExplore(self.space, func)
+    print(ranking.ranking)
 
