@@ -1,4 +1,3 @@
-# from typing import Callable
 from collections.abc import Callable
 from typing import List, Tuple
 from optimizer.int_space import IntPoint, IntSpace
