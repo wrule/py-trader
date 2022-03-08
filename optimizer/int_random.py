@@ -47,6 +47,9 @@ class Random:
       score = func(**point)
       ranking.try_push(point, score)
       print(i)
+    for record in ranking.enable_ranking():
+      sub_space = self.space.subspace(record[0], 0.1)
+      print(record)
     return ranking
   
   
