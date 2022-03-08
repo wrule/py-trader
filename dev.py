@@ -16,6 +16,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from optimizer.int_space import IntSpace
 from optimizer.int_random import Random
+from bisect import bisect
 
 src_df = load('BINANCE_BTCUSDT, 120_cd3a1')
 
@@ -39,17 +40,23 @@ def srsi_backtesting(
   strategy.backtesting(hist)
   return trader.snapshotList.last().valuation()
   
+def kkk(*args):
+  print(*args)
+  
+k = kkk
+  
 if __name__ == '__main__':
-  space = IntSpace({
-    'length': (2, 200),
-    'rsi_length': (2, 200),
-    'k': (2, 200),
-    'd': (2, 200),
-  })
-  rd = Random(space)
-  rd.explore(srsi_backtesting)
-  # while True:
-  #   rdm = space.random()
-  #   print(rdm)
-  #   result = srsi_backtesting(**rdm)
-  #   print(result)
+  a = 7
+  b = [1, 5, 10]
+  index = bisect(b, a)
+  b.insert(index, a)
+  print(b)
+  # space = IntSpace({
+  #   'length': (2, 200),
+  #   'rsi_length': (2, 200),
+  #   'k': (2, 200),
+  #   'd': (2, 200),
+  # })
+  # rd = Random(space)
+  # rd.explore(srsi_backtesting)
+
