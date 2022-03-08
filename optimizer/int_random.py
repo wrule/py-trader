@@ -1,4 +1,5 @@
-from typing import Callable
+# from typing import Callable
+from collections.abc import Callable
 from optimizer.int_space import IntSpace
 
 class Random:
@@ -12,7 +13,7 @@ class Random:
   
   def explore(
     self,
-    func: Callable(..., float),
+    func,
   ):
     while True:
       args = self.space.random()
