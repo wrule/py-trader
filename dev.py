@@ -56,6 +56,6 @@ if __name__ == '__main__':
     'k': (2, 200),
     'd': (2, 200),
   })
-  rd = Random(space)
+  rd = Random(space, 100)
   rd.explore(srsi_backtesting)
 

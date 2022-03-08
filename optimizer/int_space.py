@@ -17,10 +17,11 @@ class IntSpace:
       result[key] = value[0] + int((value[1] - value[0]) / 2)
     return result
   
-  def breadth(self) -> int:
+  def breadth(self, density: float = 1) -> int:
     result = 1
     for value in self.scope.values():
       result = result * (value[1] - value[0] + 1)
+    result = int(result * density)
     return result
   
   def random(self) -> IntPoint:

@@ -7,11 +7,15 @@ class Random:
   def __init__(
     self,
     space: IntSpace,
+    batchSize: int,
   ):
     self.space = space
+    self.batchSize = batchSize
     self.ranking = []
   
   space: IntSpace
+  density: float
+  batchSize: int
   ranking: List[Tuple[IntPoint, float]]
   
   def push(self, point: IntSpace, score: float):
@@ -25,10 +29,10 @@ class Random:
     self,
     func: Callable[..., float],
   ):
-    for i in range(1000):
-      point = self.space.random()
-      score = func(**point)
-      self.push(point, score)
-      print(i)
-    print([x[1] for x in self.ranking])
+    while True:
+      for i in range(self.batchSize):
+        point = self.space.random()
+        score = func(**point)
+        self.push(point, score)
+      print([x[1] for x in self.ranking])
 
