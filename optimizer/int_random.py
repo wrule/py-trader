@@ -3,6 +3,17 @@ from typing import List, Tuple
 from optimizer.int_space import IntPoint, IntSpace
 from bisect import bisect
 
+def rankingPush(
+  ranking: List[Tuple[IntPoint, float]],
+  point: IntSpace,
+  score: float,
+  limit: int = 5,
+):
+  ranking.append((point, score))
+  ranking.sort(key = lambda t: t[1], reverse = True)
+  if len(ranking) > limit:
+    del ranking[limit]
+
 class Random:
   def __init__(
     self,
@@ -24,6 +35,18 @@ class Random:
     if len(self.ranking) > 10:
       del self.ranking[10]
     
+  def spaceExplore(
+    self,
+    space: IntSpace,
+    func: Callable[..., float],
+  ):
+    ranking: List[Tuple[IntPoint, float]]
+    for i in range(self.batchSize):
+      point = space.random()
+      score = func(**point)
+      rankingPush(ranking, point, score)
+    return ranking
+  
   
   def explore(
     self,
@@ -33,6 +56,7 @@ class Random:
       for i in range(self.batchSize):
         point = self.space.random()
         score = func(**point)
-        self.push(point, score)
+        rankingPush(self.ranking, point, score, 5)
+        print(i)
       print([x[1] for x in self.ranking])
 

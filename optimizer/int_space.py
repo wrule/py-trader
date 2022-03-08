@@ -44,6 +44,11 @@ class IntSpace:
       result[key] = (min, max)
     return IntSpace(result)
 
+  def subspace(self, point: IntPoint, ratio: float):
+    diameter = int(pow(self.breadth() * ratio, 1.0 / len(self.scope)))
+    pointSpace = point_to_space(point, diameter)
+    return self.intersection(pointSpace)
+
 def point_to_space(point: IntPoint, diameter: int) -> IntSpace:
   scope = { }
   left = int((diameter - 1) / 2)
