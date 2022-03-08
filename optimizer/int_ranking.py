@@ -7,6 +7,7 @@ Record = Tuple[IntPoint, float, bool]
 class IntRanking:
   def __init__(self, limit: int = 10):
     self.limit = limit
+    self.ranking = []
   
   ranking: List[Record]
   limit: int
