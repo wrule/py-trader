@@ -30,10 +30,12 @@ def srsi_backtesting(
   snapshot_df = trader.snapshotList.dataframe()
   valuation = trader.snapshotList.last().valuation()
   print(valuation)
-  print(trader.snapshotList.return_ratio(size = 12 * 7))
+  print(trader.snapshotList.return_ratio(size = 12 * 4))
+  print(trader.snapshotList.return_ratio_std(size = 12 * 4))
+  print(trader.snapshotList.sharpe_ratio(size = 12 * 4))
   fig, ax = plt.subplots()
   ax.plot(snapshot_df['time'], snapshot_df['valuation'])
-  plt.show()
+  # plt.show()
 
 if __name__ == '__main__':
   srsi_backtesting(49, 8, 8, 27)

@@ -5,6 +5,7 @@ import pandas as pd
 from pandas import DataFrame
 from dataclasses import dataclass
 from datetime import datetime
+import numpy
 
 @dataclass
 class Snapshot:
@@ -47,6 +48,19 @@ class SnapshotList:
     endValuation = self.last().valuation()
     profitRatio = endValuation / startValuation
     return math.pow(profitRatio, 1.0 / intervalNumber) - 1
+  
+  def return_ratio_std(self, size: int = 7, offset: int = 0):
+    width = self.length() - offset
+    intervalNumber = int(width / size)
+    startIndex = offset + width % size
+    profitRatioList: List[float] = []
+    for currentIndex in range(startIndex, self.length(), intervalNumber):
+      endIndex = currentIndex + intervalNumber - 1
+      currentValuation = self.list[currentIndex].valuation()
+      endValuation = self.list[endIndex].valuation()
+      profitRatio = (endValuation - currentValuation) / currentValuation
+      profitRatioList.append(profitRatio)
+    return numpy.std(profitRatioList)
     
     # for startIndex in range(0, len(self.list), size):
     #   endIndex = startIndex + size - 1
@@ -58,8 +72,8 @@ class SnapshotList:
     # print(len(self.list))
     return 0
   
-  def sharpe_ratio(self, size: int):
-    return 0
+  def sharpe_ratio(self, size: int = 7, offset: int = 0):
+    return self.return_ratio(size, offset) / self.return_ratio_std(size, offset)
 
   def dataframe(self):
     df = DataFrame(self.list)
