@@ -42,7 +42,10 @@ class Trader:
       self.assetsDebt,
       data['Close'],
     )
-  
+
+  def buy_x(self, data: Dict[str, Any]):
+    pass
+
   def start(self, data: Dict[str, Any]):
     self.transactionList.start(self.snapshot(data))
   
