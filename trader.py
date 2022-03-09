@@ -50,6 +50,12 @@ class Trader:
       return True
     return False
   
+  def buy_assets(self, data: Dict[str, Any], assets: float):
+    if assets > 0:
+      useFunds = assets * data['Close'] / (1 - self.buyFee)
+      return self.buy_funds(data, useFunds)
+    return False
+  
   def buy_funds_percent(self, data: Dict[str, Any], percent: float):
     if percent > 0 and percent <= 1:
       useFunds = self.funds * percent
