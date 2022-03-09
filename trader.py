@@ -15,12 +15,13 @@ class Trader:
     self.reset()
   
   initFunds: float
+  buyFee: float
+  sellFee: float
+
   funds: float
   fundsDebt: float
   assets: float
   assetsDebt: float
-  buyFee: float
-  sellFee: float
   snapshotList: SnapshotList
   transactionList: TransactionList
   
