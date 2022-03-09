@@ -1,22 +1,11 @@
 #!/opt/homebrew/bin/python3
-import math
-from operator import mod
-from typing import List
-from numpy import append
-from pandas import DataFrame
 import pandas_ta as ta
 from tools.yfinance import to_dict_list
 from tools.tradingview_csv import load
 from trader import Trader
 from strategy.twoLinesCross import TwoLinesCross
 from strategy.history import History
-import time
-from random import randrange
 import matplotlib.pyplot as plt
-import numpy as np
-from optimizer.int_space import IntSpace
-from optimizer.int_random import Random
-from bisect import bisect
 
 src_df = load('BINANCE_BTCUSDT, 120_cd3a1')
 
@@ -38,24 +27,13 @@ def srsi_backtesting(
   trader = Trader(100, 0.0015, 0.0015)
   strategy = TwoLinesCross(trader, f'STOCHRSIk_{length}_{rsi_length}_{k}_{d}', f'STOCHRSId_{length}_{rsi_length}_{k}_{d}')
   strategy.backtesting(hist)
-  return trader.snapshotList.last().valuation()
-  
-def kkk(*args):
-  print(*args)
-  
-k = kkk
-  
+  snapshot_df = trader.snapshotList.dataframe()
+  valuation = trader.snapshotList.last().valuation()
+  print(valuation)
+  fig, ax = plt.subplots()
+  ax.plot(snapshot_df['time'], snapshot_df['valuation'])
+  plt.show()
+
 if __name__ == '__main__':
-  # num = 6
-  # list = [10, 5, 1]
-  # index = bisect(list, num)
-  # print(index)
-  space = IntSpace({
-    'length': (2, 200),
-    'rsi_length': (2, 200),
-    'k': (2, 200),
-    'd': (2, 200),
-  })
-  rd = Random(space, 100)
-  rd.explore(srsi_backtesting)
+  srsi_backtesting(49, 8, 8, 27)
 
