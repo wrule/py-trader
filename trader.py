@@ -43,8 +43,18 @@ class Trader:
       data['Close'],
     )
 
-  def buy_x(self, data: Dict[str, Any]):
-    pass
+  def buy_funds(self, data: Dict[str, Any], useFunds: float):
+    if useFunds <= self.funds and data['Close'] > 0:
+      self.funds -= useFunds
+      self.assets += (useFunds / data['Close']) * (1 - self.buyFee)
+      return True
+    return False
+  
+  def buy_funds_percent(self, data: Dict[str, Any], percent: float):
+    if percent > 0 and percent <= 1:
+      useFunds = self.funds * percent
+      return self.buy_funds(data, useFunds)
+    return False
 
   def start(self, data: Dict[str, Any]):
     self.transactionList.start(self.snapshot(data))
