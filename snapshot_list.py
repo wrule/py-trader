@@ -34,6 +34,20 @@ class SnapshotList:
 
   def last(self, index: int = 0):
     return self.list[-index - 1]
+  
+  def return_ratio(self, size: int = 7):
+    for startIndex in range(0, len(self.list), size):
+      endIndex = startIndex + size - 1
+      if endIndex < len(self.list):
+        startValuation = self.list[startIndex].valuation()
+        endValuation = self.list[endIndex].valuation()
+        profitRate = (endValuation - startValuation) / startValuation
+        print(profitRate)
+    print(len(self.list))
+    return 0
+  
+  def sharpe_ratio(self, size: int):
+    return 0
 
   def dataframe(self):
     df = DataFrame(self.list)
