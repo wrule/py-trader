@@ -48,8 +48,10 @@ class Random:
       ranking.try_push(point, score)
       print(i)
     for record in ranking.enable_ranking():
-      sub_space = self.space.subspace(record[0], 0.1)
+      sub_space = self.space.sub_space(record[0], 0.1)
       print(record)
+      print(sub_space.scope)
+      sub_ranking = self.spaceExplore(sub_space, func)
     return ranking
   
   
@@ -58,5 +60,5 @@ class Random:
     func: Callable[..., float],
   ):
     ranking = self.spaceExplore(self.space, func)
-    print(ranking.ranking)
+    # print(ranking.ranking)
 
