@@ -1,4 +1,5 @@
 
+import math
 from typing import List
 import pandas as pd
 from pandas import DataFrame
@@ -35,15 +36,26 @@ class SnapshotList:
   def last(self, index: int = 0):
     return self.list[-index - 1]
   
-  def return_ratio(self, size: int = 7):
-    for startIndex in range(0, len(self.list), size):
-      endIndex = startIndex + size - 1
-      if endIndex < len(self.list):
-        startValuation = self.list[startIndex].valuation()
-        endValuation = self.list[endIndex].valuation()
-        profitRate = (endValuation - startValuation) / startValuation
-        print(profitRate)
-    print(len(self.list))
+  def length(self):
+    return len(self.list)
+  
+  def return_ratio(self, size: int = 7, offset: int = 0):
+    width = self.length() - offset
+    intervalNumber = int(width / size)
+    startIndex = offset + width % size
+    startValuation = self.list[startIndex].valuation()
+    endValuation = self.last().valuation()
+    profitRatio = endValuation / startValuation
+    return math.pow(profitRatio, 1.0 / intervalNumber) - 1
+    
+    # for startIndex in range(0, len(self.list), size):
+    #   endIndex = startIndex + size - 1
+    #   if endIndex < len(self.list):
+    #     startValuation = self.list[startIndex].valuation()
+    #     endValuation = self.list[endIndex].valuation()
+    #     profitRate = (endValuation - startValuation) / startValuation
+    #     print(profitRate)
+    # print(len(self.list))
     return 0
   
   def sharpe_ratio(self, size: int):
