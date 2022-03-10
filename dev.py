@@ -53,10 +53,10 @@ def baozhengjin(
   print('保证金', bzj)
 
 if __name__ == '__main__':
-  stock = Spot(1, { 'Date': None, 'Close': 2 })
+  stock = Spot(0.5, { 'Date': None, 'Close': 1.7 })
   print(stock.start_valuation())
-  print(stock.current_valuation({ 'Close': 4 }))
-  print(stock.profit({ 'Close': 4 }))
-  print(stock.profitable({ 'Close': 4 }))
+  print(stock.current_valuation({ 'Close': 1.7 }))
+  print(stock.profit({ 'Close': 1.7 }))
+  print(stock.profitable({ 'Close': 1.6 }))
 
 
