@@ -17,4 +17,7 @@ class Short(Stock):
     return self.volume * self.price
   
   def current_valuation(self, data: Dict[str, Any]) -> float:
-    return 0
+    return self.volume * data['Close']
+  
+  def profit(self, data: Dict[str, Any]):
+    return self.start_valuation() - self.current_valuation(data)

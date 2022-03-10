@@ -56,9 +56,10 @@ def baozhengjin(
 if __name__ == '__main__':
   stock = Short(
     0.003,
-    { 'Date': None, 'Close': 39340.0 },
+    { 'Date': None, 'Close': 39150.0 },
     20,
   )
   print(stock.start_valuation())
+  print(stock.profit({ 'Close': 39133.0 }))
 
 
