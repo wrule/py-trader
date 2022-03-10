@@ -50,13 +50,22 @@ def baozhengjin(
   print('预期仓位', fundsNum * 1.0004)
   print('预期保证金', fundsNum * 1.0004 / lever)
   print('实际手续费', fundsNum * 1.0004 * 0.0002)
-  print('----------')
-  print('新仓位', new_price * assetsNum * 1.0004)
-  print('新保证金', new_price * assetsNum * 1.0004 / 3.0)
+  # print('----------')
+  # print('新仓位', new_price * assetsNum * 1.0004)
+  # print('新保证金', new_price * assetsNum / lever)
+  
+# 资产数量 0.003
+# 名义价值 118.75248
+# 预期仓位 118.799980992
+# 预期保证金 39.599993664
+# 实际手续费 0.0237599961984
+  
   # print('盈利', fundsNum * 1.0004 - new_price * assetsNum)
+  # 117.8
+  # 39.26
   pass
 
 if __name__ == '__main__':
-  baozhengjin(3, 120.0, 39600, 0.001, 39368.30)
+  baozhengjin(3, 120.0, 39600, 0.001, 39251.46)
 
 
