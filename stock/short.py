@@ -1,7 +1,7 @@
 from typing import Any, Dict
-from abc import ABC, abstractmethod
+from stock.stock import Stock
 
-class Short(ABC):
+class Short(Stock):
   def __init__(
     self,
     volume: float,
