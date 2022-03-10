@@ -9,12 +9,12 @@ class Stock(ABC):
     data: Dict[str, Any],
   ):
     self.volume = volume
-    self.restockTime = data['Date']
-    self.restockPrice = data['Close']
+    self.price = data['Close']
+    self.date = data['Date']
   
   volume: float
-  restockTime: datetime
-  restockPrice: float
+  price: float
+  date: datetime
 
   @abstractmethod
   def start_valuation(self) -> float:
