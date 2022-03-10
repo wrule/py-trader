@@ -10,7 +10,7 @@ class Spot(Stock):
     super().__init__(volume, data)
   
   def start_valuation(self) -> float:
-    return self.volume * self.restockPrice
+    return self.volume * self.price
   
   def current_valuation(self, data: Dict[str, Any]) -> float:
     return self.volume * data['Close']
