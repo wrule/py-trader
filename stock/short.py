@@ -14,7 +14,7 @@ class Short(Stock):
   lever: int
   
   def start_valuation(self) -> float:
-    return 0
+    return self.volume * self.price
   
   def current_valuation(self, data: Dict[str, Any]) -> float:
     return 0

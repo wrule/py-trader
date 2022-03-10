@@ -59,6 +59,6 @@ if __name__ == '__main__':
     { 'Date': None, 'Close': 39340.0 },
     20,
   )
-  # print(stock.start_valuation())
+  print(stock.start_valuation())
 
 
