@@ -36,7 +36,6 @@ def srsi_backtesting(
   fig, ax = plt.subplots()
   ax.plot(snapshot_df['time'], snapshot_df['valuation'])
   # plt.show()
-
 def baozhengjin(
   lever: int,
   usdt: float,
@@ -44,21 +43,15 @@ def baozhengjin(
   smallest_unit: float,
 ):
   assetsNum = int(usdt / price / smallest_unit) * smallest_unit
-  fundsNum = assetsNum * price
-  print('可购买资产数量', assetsNum)
-  # print('预计花费资金数量', fundsNum)
-  bzj = fundsNum / lever
-  # print('预计保证金1', bzj)
-  print('预计保证金2', bzj, bzj * 0.0004)
-  # 49.19
-  # 77.88
-  # 18.44
-  # 6.14
-  
-  # 37.36
+  fundsNum = assetsNum * price * 0.9996
+  print('资产数量', assetsNum)
+  print('名义价值', fundsNum)
+  print('预期仓位', fundsNum * 1.0004)
+  print('预期保证金', fundsNum * 1.0004 / lever)
+  print('实际手续费', fundsNum * 1.0004 * 0.0002)
   pass
 
 if __name__ == '__main__':
-  baozhengjin(9, 359.8, 42000, 0.001)
+  baozhengjin(3, 120.0, 39600, 0.001)
 
 
