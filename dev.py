@@ -44,28 +44,13 @@ def baozhengjin(
   new_price: float,
 ):
   assetsNum = int(usdt / price / smallest_unit) * smallest_unit
-  fundsNum = assetsNum * price * 0.9996
-  print('资产数量', assetsNum)
-  print('名义价值', fundsNum)
-  print('预期仓位', fundsNum * 1.0004)
-  print('预期保证金', fundsNum * 1.0004 / lever)
-  print('实际手续费', fundsNum * 1.0004 * 0.0002)
-  # print('----------')
-  # print('新仓位', new_price * assetsNum * 1.0004)
-  # print('新保证金', new_price * assetsNum / lever)
-  
-# 资产数量 0.003
-# 名义价值 118.75248
-# 预期仓位 118.799980992
-# 预期保证金 39.599993664
-# 实际手续费 0.0237599961984
-  
-  # print('盈利', fundsNum * 1.0004 - new_price * assetsNum)
-  # 117.8
-  # 39.26
-  pass
+  print('资产', assetsNum)
+  fundsNum = assetsNum * price
+  print('资金', fundsNum)
+  bzj = fundsNum / lever
+  print('保证金', bzj)
 
 if __name__ == '__main__':
-  baozhengjin(3, 120.0, 39600, 0.001, 39251.46)
+  baozhengjin(20, 123.5, 39340, 0.001, 39251.46)
 
 
