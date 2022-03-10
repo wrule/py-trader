@@ -24,5 +24,8 @@ class Stock(ABC):
   def current_valuation(self, data: Dict[str, Any]) -> float:
     pass
 
-  def profit(self):
-    return self.current_valuation() - self.start_valuation()
+  def profit(self, data: Dict[str, Any]):
+    return self.current_valuation(data) - self.start_valuation()
+  
+  def profitable(self, data: Dict[str, Any]):
+    return self.profit(data) > 0

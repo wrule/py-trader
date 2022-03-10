@@ -1,4 +1,5 @@
 #!/opt/homebrew/bin/python3
+from numpy import sctype2char
 import pandas_ta as ta
 from tools.yfinance import to_dict_list
 from tools.tradingview_csv import load
@@ -6,6 +7,7 @@ from trader import Trader
 from strategy.twoLinesCross import TwoLinesCross
 from strategy.history import History
 import matplotlib.pyplot as plt
+from stock.spot import Spot
 
 src_df = load('BINANCE_BTCUSDT, 120_cd3a1')
 
@@ -51,6 +53,10 @@ def baozhengjin(
   print('保证金', bzj)
 
 if __name__ == '__main__':
-  baozhengjin(20, 123.5, 39340, 0.001, 39251.46)
+  stock = Spot(1, { 'Date': None, 'Close': 2 })
+  print(stock.start_valuation())
+  print(stock.current_valuation({ 'Close': 4 }))
+  print(stock.profit({ 'Close': 4 }))
+  print(stock.profitable({ 'Close': 4 }))
 
 
