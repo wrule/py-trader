@@ -60,7 +60,7 @@ if __name__ == '__main__':
     10,
   )
   print(stock.start_valuation())
-  print(stock.current_valuation({ 'Close': 38350.7 }))
-  print(stock.profit({ 'Close': 38350.7 }))
+  # print(stock.current_valuation({ 'Close': 38350.7 }))
+  print(stock.profit({ 'Close': 72257.35 }))
 
 

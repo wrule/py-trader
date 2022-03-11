@@ -16,16 +16,14 @@ class Stock(ABC):
   price: float
   date: datetime
 
-  @abstractmethod
   def start_valuation(self) -> float:
-    pass
+    return self.volume * self.price
 
-  @abstractmethod
   def current_valuation(self, data: Dict[str, Any]) -> float:
-    pass
+    return self.volume * data['Close']
 
   def profit(self, data: Dict[str, Any]):
     return self.current_valuation(data) - self.start_valuation()
-  
+
   def profitable(self, data: Dict[str, Any]):
     return self.profit(data) > 0
