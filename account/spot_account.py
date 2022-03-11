@@ -40,8 +40,8 @@ class SpotAccount:
     date: datetime,
   ):
     if use_assets > 0:
-      useFunds = use_assets * price / (1 - self.buyFee)
-      return self.buy_funds(useFunds, price, date)
+      use_funds = use_assets * price / (1 - self.buyFee)
+      return self.buy_funds(use_funds, price, date)
     return False
   
   def buy_funds_percent(
