@@ -65,6 +65,8 @@ class SpotAccount:
     price: float,
     date: datetime,
   ):
+    if use_assets < 0:
+      return None
     use_assets = (
       use_assets
       if use_assets <= self.spotList[index].volume
@@ -78,8 +80,32 @@ class SpotAccount:
       del self.spotList[index]
     return (use_assets, get_funds)
   
-  def sell_all(self):
-    pass
+  def sell_stock_percent(
+    self,
+    index: int,
+    percent: float,
+    price: float,
+    date: datetime,
+  ):
+    return self.sell_stock(
+      index,
+      self.spotList[index].volume * percent,
+      price,
+      date,
+    )
+  
+  def sell_all(
+    self,
+    price: float,
+    date: datetime,
+  ):
+    use_assets_total = 0
+    get_funds_total = 0
+    while len(self.spotList) > 0:
+      (use_assets, get_funds) = self.sell_stock_percent(0, 1, price, date)
+      use_assets_total += use_assets
+      get_funds_total += get_funds
+    return (use_assets_total, get_funds_total)
   
   def sell_yuqi(self):
     pass
