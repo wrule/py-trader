@@ -122,6 +122,22 @@ class SpotAccount:
       get_funds_total += funds
     return (use_assets_total, get_funds_total)
   
+  def sell_funds(
+    self,
+    get_funds: float,
+    price: float,
+    date: datetime,
+  ):
+    use_assets_total = 0
+    get_funds_total = 0
+    while get_funds > 0 and len(self.spotList) > 0:
+      use_assets = 0
+      (assets, funds) = self.sell_stock(0, use_assets, price, date)
+      get_funds -= funds
+      use_assets_total += assets
+      get_funds_total += funds
+    return (use_assets_total, get_funds_total)
+  
   def sell_assets_percent(
     self,
     percent: float,
