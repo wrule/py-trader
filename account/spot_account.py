@@ -33,6 +33,17 @@ class SpotAccount:
       return True
     return False
   
+  def buy_assets(
+    self,
+    use_assets: float,
+    price: float,
+    date: datetime,
+  ):
+    if use_assets > 0:
+      useFunds = use_assets * price / (1 - self.buyFee)
+      return self.buy_funds(useFunds, price, date)
+    return False
+  
   def sell(self):
     pass
 
