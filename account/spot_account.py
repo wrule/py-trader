@@ -10,11 +10,13 @@ class SpotAccount:
     sellFee: float,
   ):
     self.funds = funds
+    self.assets = 0
     self.buyFee = buyFee
     self.sellFee = sellFee
     self.spotList = []
 
   funds: float
+  assets: float
   buyFee: float
   sellFee: float
   spotList: List[Spot]
@@ -30,6 +32,7 @@ class SpotAccount:
       buy_assets = (use_funds / price) * (1 - self.buyFee)
       spot = Spot(buy_assets, price, date)
       self.spotList.append(spot)
+      self.assets += buy_assets
       return True
     return False
   
