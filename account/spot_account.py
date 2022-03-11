@@ -44,6 +44,17 @@ class SpotAccount:
       return self.buy_funds(useFunds, price, date)
     return False
   
+  def buy_funds_percent(
+    self,
+    percent: float,
+    price: float,
+    date: datetime,
+  ):
+    if percent > 0 and percent <= 1:
+      use_funds = self.funds * percent
+      return self.buy_funds(use_funds, price, date)
+    return False
+  
   def sell(self):
     pass
 
