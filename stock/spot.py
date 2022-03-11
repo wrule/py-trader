@@ -1,5 +1,4 @@
-import datetime
-from typing import Any, Dict
+from datetime import datetime
 from stock.stock import Stock
 
 class Spot(Stock):
@@ -8,6 +7,5 @@ class Spot(Stock):
     volume: float,
     price: float,
     date: datetime,
-    direction: int = 1,
   ):
-    super().__init__(volume, price, date, direction)
+    super().__init__(volume, price, date, 1)

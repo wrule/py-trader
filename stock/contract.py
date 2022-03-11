@@ -1,5 +1,4 @@
-import datetime
-from typing import Any, Dict
+from datetime import datetime
 from stock.stock import Stock
 
 class Contract(Stock):
