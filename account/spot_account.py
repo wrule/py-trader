@@ -122,7 +122,7 @@ class SpotAccount:
       get_funds_total += funds
     return (use_assets_total, get_funds_total)
   
-  def sell_percent(
+  def sell_assets_percent(
     self,
     percent: float,
     price: float,
