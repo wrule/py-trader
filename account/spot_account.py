@@ -65,15 +65,18 @@ class SpotAccount:
     price: float,
     date: datetime,
   ):
-    if index >= 0 and index < len(self.spotList):
-      use_assets = use_assets if use_assets <= self.spotList[index].volume else self.spotList[index].volume
-      self.spotList[index].volume -= use_assets
-      self.funds += use_assets * price * (1 - self.sellFee)
-      self.assets -= use_assets
-      if self.spotList[index].volume <= 0:
-        del self.spotList[index]
-      return True
-    return False
+    use_assets = (
+      use_assets
+      if use_assets <= self.spotList[index].volume
+      else self.spotList[index].volume
+    )
+    self.spotList[index].volume -= use_assets
+    self.assets -= use_assets
+    get_funds = use_assets * price * (1 - self.sellFee)
+    self.funds += get_funds
+    if self.spotList[index].volume <= 0:
+      del self.spotList[index]
+    return (use_assets, get_funds)
   
   def sell_all(self):
     pass
