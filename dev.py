@@ -8,7 +8,7 @@ from strategy.twoLinesCross import TwoLinesCross
 from strategy.history import History
 import matplotlib.pyplot as plt
 from stock.spot import Spot
-from stock.short import Short
+from stock.contract import Contract
 
 src_df = load('BINANCE_BTCUSDT, 120_cd3a1')
 
@@ -54,7 +54,7 @@ def baozhengjin(
   print('保证金', bzj)
 
 if __name__ == '__main__':
-  stock = Short(
+  stock = Contract(
     0.003,
     39050.0,
     None,

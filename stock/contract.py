@@ -2,7 +2,7 @@ import datetime
 from typing import Any, Dict
 from stock.stock import Stock
 
-class Short(Stock):
+class Contract(Stock):
   def __init__(
     self,
     volume: float,
