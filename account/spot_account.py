@@ -107,7 +107,7 @@ class SpotAccount:
       get_funds_total += get_funds
     return (use_assets_total, get_funds_total)
   
-  def sell_yuqi(self):
+  def sell_assets(self):
     pass
   
   def sell_percent(self):
