@@ -56,12 +56,16 @@ def baozhengjin(
 if __name__ == '__main__':
   stock = Short(
     0.003,
-    { 'Date': None, 'Close': 39050.0 },
+    39050.0,
+    None,
     10,
+    -1,
   )
+  price = 38604.25
   print(stock.start_valuation())
-  # print(stock.current_valuation({ 'Close': 38350.7 }))
-  print(stock.profit({ 'Close': 38350.7 }))
-  print(stock.profitable({ 'Close': 38350.7 }))
+  print(stock.current_valuation(price))
+  print(stock.profit(price))
+  print(stock.profitable(price))
+  print(stock.deposit(price))
 
 

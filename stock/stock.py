@@ -1,29 +1,32 @@
 from datetime import datetime
-from abc import ABC, abstractmethod
 from typing import Any, Dict
 
-class Stock(ABC):
+class Stock:
   def __init__(
     self,
     volume: float,
-    data: Dict[str, Any],
+    price: float,
+    date: datetime,
+    direction: int = 1,
   ):
     self.volume = volume
-    self.price = data['Close']
-    self.date = data['Date']
+    self.price = price
+    self.date = date
+    self.direction = direction
   
   volume: float
   price: float
   date: datetime
+  direction: int
 
   def start_valuation(self) -> float:
     return self.volume * self.price
 
-  def current_valuation(self, data: Dict[str, Any]) -> float:
-    return self.volume * data['Close']
+  def current_valuation(self, price: float) -> float:
+    return self.volume * price
 
-  def profit(self, data: Dict[str, Any]):
-    return self.current_valuation(data) - self.start_valuation()
+  def profit(self, price: float):
+    return self.direction * (self.current_valuation(price) - self.start_valuation())
 
-  def profitable(self, data: Dict[str, Any]):
-    return self.profit(data) > 0
+  def profitable(self, price: float):
+    return self.profit(price) > 0

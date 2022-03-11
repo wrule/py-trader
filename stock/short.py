@@ -1,3 +1,4 @@
+import datetime
 from typing import Any, Dict
 from stock.stock import Stock
 
@@ -5,14 +6,15 @@ class Short(Stock):
   def __init__(
     self,
     volume: float,
-    data: Dict[str, Any],
+    price: float,
+    date: datetime,
     lever: int,
+    direction: int = 1,
   ):
-    super().__init__(volume, data)
+    super().__init__(volume, price, date, direction)
     self.lever = lever
     
   lever: int
 
-  def profit(self, data: Dict[str, Any]):
-    return self.start_valuation() - self.current_valuation(data)
-
+  def deposit(self, price: float):
+    return self.current_valuation(price) / self.lever
