@@ -55,7 +55,17 @@ class SpotAccount:
       return self.buy_funds(use_funds, price, date)
     return False
   
-  def sell(self):
+  def sell_stock(self):
     pass
+  
+  def sell_all(self):
+    pass
+  
+  def sell_yuqi(self):
+    pass
+  
+  def sell_percent(self):
+    pass
+
 
       
