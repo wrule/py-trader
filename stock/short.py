@@ -13,3 +13,6 @@ class Short(Stock):
     
   lever: int
 
+  def profit(self, data: Dict[str, Any]):
+    return self.start_valuation() - self.current_valuation(data)
+
