@@ -57,7 +57,10 @@ def baozhengjin(
 if __name__ == '__main__':
   account = SpotAccount(100, 0.001, 0.001)
   account.buy_funds(10, 100, None)
-  print(account.spotList[0])
+  account.buy_funds(10, 100, None)
+  account.buy_funds(10, 110, None)
+  for spot in account.spotList:
+    print(spot)
   # stock = Contract(
   #   0.003,
   #   39050.0,
