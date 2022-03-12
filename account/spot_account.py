@@ -27,7 +27,7 @@ class SpotAccount:
     price: float,
     date: datetime,
   ):
-    if price > 0:
+    if use_funds >= 0 and price > 0:
       use_funds = (
         use_funds
         if use_funds <= self.funds
@@ -47,10 +47,7 @@ class SpotAccount:
     price: float,
     date: datetime,
   ):
-    if get_assets > 0:
-      use_funds = get_assets * price / (1 - self.buyFee)
-      return self.buy_funds(use_funds, price, date)
-    return None
+    return self.buy_funds(get_assets * price / (1 - self.buyFee), price, date)
   
   def buy_funds_percent(
     self,
