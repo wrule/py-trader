@@ -53,5 +53,22 @@ class ContractAccount:
     self.contract_list.append(contract)
     return (use_funds, get_assets)
 
-  
+  def long(
+    self,
+    use_funds: float,
+    price: float,
+    date: datetime,
+  ):
+    available_funds = self.available_funds(price)
+    if available_funds <= 0:
+      return None
+    use_funds = (
+      use_funds
+      if use_funds <= available_funds
+      else available_funds
+    )
+    get_assets = int(use_funds / price / self.unit) * self.unit
+    contract = Contract(get_assets, price, date, self.lever, 1)
+    self.contract_list.append(contract)
+    return (use_funds, get_assets)
   
