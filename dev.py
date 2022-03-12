@@ -63,6 +63,10 @@ if __name__ == '__main__':
   print(account.buy_assets(0.1, 110, None))
   print(account.buy_funds_percent(0.5, 110, None))
   print(account.funds, account.assets)
+  
+  # print(account.sell_stock(0, 1, 200, None))
+  # print(account.funds, account.assets)
+  
   for spot in account.spotList:
     print(spot)
   # stock = Contract(
