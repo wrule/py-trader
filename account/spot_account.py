@@ -27,19 +27,19 @@ class SpotAccount:
     price: float,
     date: datetime,
   ):
-    if use_funds >= 0 and price > 0:
-      use_funds = (
-        use_funds
-        if use_funds <= self.funds
-        else self.funds
-      )
-      self.funds -= use_funds
-      get_assets = use_funds / price * (1 - self.buyFee)
-      spot = Spot(get_assets, price, date)
-      self.spotList.append(spot)
-      self.assets += get_assets
-      return (use_funds, get_assets)
-    return None
+    if use_funds < 0 or price <= 0:
+      return None
+    use_funds = (
+      use_funds
+      if use_funds <= self.funds
+      else self.funds
+    )
+    self.funds -= use_funds
+    get_assets = use_funds / price * (1 - self.buyFee)
+    spot = Spot(get_assets, price, date)
+    self.spotList.append(spot)
+    self.assets += get_assets
+    return (use_funds, get_assets)
   
   def buy_assets(
     self,
