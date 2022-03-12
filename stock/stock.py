@@ -1,5 +1,6 @@
 from datetime import datetime
 from typing import Any, Dict
+import json
 
 class Stock:
   def __init__(
@@ -18,6 +19,14 @@ class Stock:
   price: float
   date: datetime
   direction: int
+  
+  def __str__(self):
+    return json.dumps({
+      'volume': self.volume,
+      'price': self.price,
+      'date': self.date,
+      'direction': self.direction,
+    })
 
   def start_valuation(self) -> float:
     return self.volume * self.price

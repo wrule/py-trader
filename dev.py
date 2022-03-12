@@ -1,6 +1,7 @@
 #!/opt/homebrew/bin/python3
 from numpy import sctype2char
 import pandas_ta as ta
+from account.spot_account import SpotAccount
 from tools.yfinance import to_dict_list
 from tools.tradingview_csv import load
 from trader import Trader
@@ -54,18 +55,21 @@ def baozhengjin(
   print('保证金', bzj)
 
 if __name__ == '__main__':
-  stock = Contract(
-    0.003,
-    39050.0,
-    None,
-    10,
-    -1,
-  )
-  price = 38604.25
-  print(stock.start_valuation())
-  print(stock.current_valuation(price))
-  print(stock.profit(price))
-  print(stock.profitable(price))
-  print(stock.deposit(price))
+  account = SpotAccount(100, 0.001, 0.001)
+  account.buy_funds(10, 100, None)
+  print(account.spotList[0])
+  # stock = Contract(
+  #   0.003,
+  #   39050.0,
+  #   None,
+  #   10,
+  #   -1,
+  # )
+  # price = 38604.25
+  # print(stock.start_valuation())
+  # print(stock.current_valuation(price))
+  # print(stock.profit(price))
+  # print(stock.profitable(price))
+  # print(stock.deposit(price))
 
 
