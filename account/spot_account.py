@@ -34,7 +34,7 @@ class SpotAccount:
         else self.funds
       )
       self.funds -= use_funds
-      buy_assets = (use_funds / price) * (1 - self.buyFee)
+      buy_assets = use_funds / price * (1 - self.buyFee)
       spot = Spot(buy_assets, price, date)
       self.spotList.append(spot)
       self.assets += buy_assets
@@ -50,7 +50,7 @@ class SpotAccount:
     if use_assets > 0:
       use_funds = use_assets * price / (1 - self.buyFee)
       return self.buy_funds(use_funds, price, date)
-    return False
+    return None
   
   def buy_funds_percent(
     self,
