@@ -68,7 +68,7 @@ if __name__ == '__main__':
   print(account.funds, account.assets)
   
   print(account.sell_all(200, None))
-  print(1, account.funds, account.assets)
+  print(1, account.funds, round(account.assets, 17))
 
   # for spot in account.spotList:
   #   print(spot)

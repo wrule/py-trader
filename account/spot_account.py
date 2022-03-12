@@ -73,6 +73,8 @@ class SpotAccount:
     )
     self.spotList[index].volume -= use_assets
     self.assets -= use_assets
+    if self.assets < 0:
+      self.assets = 0
     get_funds = use_assets * price * (1 - self.sellFee)
     self.funds += get_funds
     if self.spotList[index].volume <= 0:
