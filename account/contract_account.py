@@ -59,15 +59,6 @@ class ContractAccount:
     contract = Contract(get_assets, price, date, self.lever, direction)
     self.contract_list.append(contract)
     return (use_funds, get_assets)
-    
-      
-  def short(
-    self,
-    use_funds: float,
-    price: float,
-    date: datetime,
-  ):
-    return self.buy_funds(-1, use_funds, price, date)
 
   def long(
     self,
@@ -76,4 +67,13 @@ class ContractAccount:
     date: datetime,
   ):
     return self.buy_funds(1, use_funds, price, date)
+
+  def short(
+    self,
+    use_funds: float,
+    price: float,
+    date: datetime,
+  ):
+    return self.buy_funds(-1, use_funds, price, date)
+
   
