@@ -1,6 +1,7 @@
 #!/opt/homebrew/bin/python3
 from numpy import sctype2char
 import pandas_ta as ta
+from account.contract_account import ContractAccount
 from account.spot_account import SpotAccount
 from tools.yfinance import to_dict_list
 from tools.tradingview_csv import load
@@ -55,4 +56,8 @@ def baozhengjin(
   print('保证金', bzj)
 
 if __name__ == '__main__':
-  print(1234)
+  account = ContractAccount(100, 3, 0.01, 0.0002)
+  print(account.lever_funds())
+  print(account.long(285, 13.07, None))
+  print(account.contract_list[0].profit(13.152))
+  print(account.available_funds(13.152))

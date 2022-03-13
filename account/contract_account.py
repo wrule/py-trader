@@ -15,6 +15,7 @@ class ContractAccount:
     self.lever = lever
     self.unit = unit
     self.fee = fee
+    self.contract_list = []
   
   funds: float
   lever: int
