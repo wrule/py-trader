@@ -9,8 +9,7 @@ class ContractAccount:
     funds: float,
     lever: int,
     unit: float,
-    buy_fee: float,
-    sell_fee: float,
+    fee: float,
   ):
     self.funds = funds
     self.lever = lever
@@ -50,6 +49,8 @@ class ContractAccount:
       else available_funds
     )
     get_assets = int(use_funds / price / self.unit) * self.unit
+    use_funds = get_assets * price
+    self.funds -= use_funds * use_funds
     contract = Contract(get_assets, price, date, self.lever, direction)
     self.contract_list.append(contract)
     return (use_funds, get_assets)
