@@ -55,33 +55,4 @@ def baozhengjin(
   print('保证金', bzj)
 
 if __name__ == '__main__':
-  account = SpotAccount(100, 0.001, 0.001)
-  print(account.buy_funds(10, 100, None))
-  print(account.buy_funds(10, 100, None))
-  print(account.buy_funds(10, 110, None))
-  print(account.buy_assets(0.1, 110, None))
-  print(account.buy_assets(0.1, 110, None))
-  print(account.buy_funds_percent(0.5, 110, None))
-
-  print(account.funds, account.assets)
-  # print(account.sell_assets(0.5, 200, None))
-  print(account.sell_funds(99.90000000000002, 200, None))
-  print(account.funds, account.assets)
-
-  # for spot in account.spotList:
-  #   print(spot)
-  # stock = Contract(
-  #   0.003,
-  #   39050.0,
-  #   None,
-  #   10,
-  #   -1,
-  # )
-  # price = 38604.25
-  # print(stock.start_valuation())
-  # print(stock.current_valuation(price))
-  # print(stock.profit(price))
-  # print(stock.profitable(price))
-  # print(stock.deposit(price))
-
-
+  print(1234)
