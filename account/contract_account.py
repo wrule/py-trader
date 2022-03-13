@@ -14,10 +14,12 @@ class ContractAccount:
     self.funds = funds
     self.lever = lever
     self.unit = unit
+    self.fee = fee
   
   funds: float
   lever: int
   unit: float
+  fee: float
   contract_list: List[Contract]
   
   def lever_funds(self):
@@ -50,7 +52,10 @@ class ContractAccount:
     )
     get_assets = int(use_funds / price / self.unit) * self.unit
     use_funds = get_assets * price
-    self.funds -= use_funds * use_funds
+    use_fee = use_funds * self.fee
+    if self.funds < use_fee:
+      return None
+    self.funds -= use_fee
     contract = Contract(get_assets, price, date, self.lever, direction)
     self.contract_list.append(contract)
     return (use_funds, get_assets)
