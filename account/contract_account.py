@@ -86,8 +86,13 @@ class ContractAccount:
     return (current_valuation, profit)
 
   def close_all(self, price: float):
+    current_valuation_total = 0
+    profit_total = 0
     while len(self.contract_list) > 0:
-      self.close(0, price)
+      (current_valuation, profit) = self.close(0, price)
+      current_valuation_total += current_valuation
+      profit_total += profit
+    return (current_valuation_total, profit_total)
 
   def valuation(self, price: float):
     result = self.funds
