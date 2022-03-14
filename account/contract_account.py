@@ -75,6 +75,16 @@ class ContractAccount:
   ):
     return self.buy_funds(-1, use_funds, price, date)
 
+  def close(self, index: int, price: float):
+    self.funds += self.contract_list[index].profit(price)
+    del self.contract_list[index]
+    if self.funds < 0:
+      self.funds = 0
+      
+  def close_all(self, price: float):
+    while len(self.contract_list) > 0:
+      self.close(0, price)
+
   def valuation(self, price: float):
     result = self.funds
     for contract in self.contract_list:
