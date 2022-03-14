@@ -10,17 +10,20 @@ class ContractAccount:
     lever: int,
     unit: float,
     fee: float,
+    funds_fee: float,
   ):
     self.funds = funds
     self.lever = lever
     self.unit = unit
     self.fee = fee
+    self.funds_fee = funds_fee
     self.contract_list = []
   
   funds: float
   lever: int
   unit: float
   fee: float
+  funds_fee: float
   contract_list: List[Contract]
   
   def available_funds(self, price: float):
@@ -99,3 +102,14 @@ class ContractAccount:
     for contract in self.contract_list:
       result += contract.profit(price)
     return result
+  
+  def nominal_valuation(self, price: float):
+    result = 0
+    for contract in self.contract_list:
+      result += contract.current_valuation(price)
+    return result
+
+  def deduct_funds_fee(self, price: float):
+    self.funds -= self.nominal_valuation(price) * self.funds_fee
+    if self.funds < 0:
+      self.funds = 0
