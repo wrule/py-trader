@@ -75,4 +75,8 @@ class ContractAccount:
   ):
     return self.buy_funds(-1, use_funds, price, date)
 
-  
+  def valuation(self, price: float):
+    result = self.funds
+    for contract in self.contract_list:
+      result += contract.profit(price)
+    return result
