@@ -23,18 +23,16 @@ class ContractAccount:
   fee: float
   contract_list: List[Contract]
   
-  def lever_funds(self):
-    return self.funds * self.lever
-  
-  def available_funds(
-    self,
-    price: float,
-  ):
-    result = self.lever_funds()
+  def available_funds(self, price: float):
+    result = self.funds
     for contract in self.contract_list:
       result -= contract.deposit(price)
       result += contract.profit(price)
+    result = result if result >= 0 else 0
     return result
+  
+  def lever_funds(self, price: float):
+    return self.available_funds(price) * self.lever
   
   def buy_funds(
     self,
@@ -43,13 +41,13 @@ class ContractAccount:
     price: float,
     date: datetime,
   ):
-    available_funds = self.available_funds(price)
-    if available_funds <= 0:
+    lever_funds = self.lever_funds(price)
+    if lever_funds <= 0:
       return None
     use_funds = (
       use_funds
-      if use_funds <= available_funds
-      else available_funds
+      if use_funds <= lever_funds
+      else lever_funds
     )
     get_assets = int(use_funds / price / self.unit) * self.unit
     use_funds = get_assets * price
