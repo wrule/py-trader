@@ -57,5 +57,8 @@ def baozhengjin(
 
 if __name__ == '__main__':
   account = ContractAccount(100, 3, 0.01, 0.0002)
-  account.long(250, 10, None)
-  print(account.valuation(6.1))
+  print(account.long(285, 13.07, None))
+  print(account.contract_list[0].profit(15.00))
+  # account.close_all(9.13)
+  # print(account.funds)
+  print(account.valuation(9.13))
