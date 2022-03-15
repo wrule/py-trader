@@ -146,6 +146,13 @@ class SpotAccount:
     date: datetime,
   ):
     return self.sell_assets(self.assets * percent, price, date)
+  
+  def valuation(self, price: float):
+    result = self.funds
+    for spot in self.spot_list:
+      result += spot.current_valuation(price)
+    return result
+
 
 
       
