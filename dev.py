@@ -13,10 +13,10 @@ if __name__ == '__main__':
   snapshot_list.append(Snapshot(None, 7))#1
   snapshot_list.append(Snapshot(None, 7))
   snapshot_list.append(Snapshot(None, 6))#1
-  snapshot_list.append(Snapshot(None, 9))
+  snapshot_list.append(Snapshot(None, 1))
   snapshot_list.append(Snapshot(None, 10))
   # length 10
   # size 3
   # (4 * 2) + 1 = 9
-  # print(snapshot_list.return_ratio(3))
-  snapshot_list.return_ratio_std(3)
+  print(snapshot_list.return_ratio(2))
+  print(snapshot_list.return_ratio_std(2))

@@ -39,15 +39,21 @@ class SnapshotList:
   
   def return_ratio_std(self, size: int = 7, offset: int = 0):
     profitRatioList: List[float] = []
-    for endIndex in range(self.length(), offset, -(size - 1)):
+    for endIndex in range(
+      self.length() - 1,
+      -1,
+      -(size - 1),
+    ):
       startIndex = endIndex - (size - 1)
-      print(startIndex, endIndex)
-      # startValuation = self.list[startIndex].valuation
-      # endValuation = self.list[endIndex].valuation
-      # profitRatio = (endValuation - startValuation) / startValuation
-      # profitRatioList.append(profitRatio)
+      if startIndex >= offset:
+        startValuation = self.list[startIndex].valuation
+        endValuation = self.list[endIndex].valuation
+        profitRatio = (endValuation - startValuation) / startValuation
+        profitRatioList.append(profitRatio)
+      else:
+        break
     # print(profitRatioList)
-    # return numpy.std(profitRatioList)
+    return numpy.std(profitRatioList)
     
     
     # width = self.length() - offset
