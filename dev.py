@@ -18,5 +18,5 @@ if __name__ == '__main__':
   # length 10
   # size 3
   # (4 * 2) + 1 = 9
-  print(snapshot_list.return_ratio(3))
-  print(snapshot_list.return_ratio_std(3))
+  # print(snapshot_list.return_ratio(3))
+  snapshot_list.return_ratio_std(3)
