@@ -43,7 +43,7 @@ class TwoLinesCross(Strategy):
       self.trader.contract.close_all(self.last()['Close'])
       self.trader.contract.buy_funds(
         -1,
-        self.trader.contract.lever_funds(self.last()['Close']) * 0.1,
+        self.trader.contract.lever_funds(self.last()['Close']) * 0.08,
         self.last()['Close'],
         self.last()['Date'],
       )

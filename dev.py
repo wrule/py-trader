@@ -9,6 +9,8 @@ from strategy.history import History
 from trader import Trader
 from strategy.twoLinesCross import TwoLinesCross
 import pandas_ta as ta
+import matplotlib.pyplot as plt
+import numpy as np
 
 if __name__ == '__main__':
   df = load('BINANCE_BTCUSDT, 120_cd3a1')
@@ -22,3 +24,8 @@ if __name__ == '__main__':
   print(trader.snapshotList.last().valuation)
   print(trader.snapshotList.return_ratio(12 * 30))
   print(trader.snapshotList.sharpe_ratio(12 * 30))
+  x = trader.snapshotList.dataframe()['time']
+  y = trader.snapshotList.dataframe()['valuation']
+  fig, ax = plt.subplots()
+  ax.plot(x, y)
+  plt.show()
