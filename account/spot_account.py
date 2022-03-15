@@ -27,7 +27,7 @@ class SpotAccount:
     price: float,
     date: datetime,
   ):
-    if use_funds < 0 or price <= 0:
+    if use_funds <= 0 or price <= 0:
       return None
     use_funds = (
       use_funds
@@ -64,7 +64,7 @@ class SpotAccount:
     price: float,
     date: datetime,
   ):
-    if use_assets < 0:
+    if use_assets <= 0:
       return None
     use_assets = (
       use_assets
