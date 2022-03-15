@@ -32,8 +32,8 @@ class SnapshotList:
     width = self.length() - offset
     intervalNumber = int(width / size)
     startIndex = offset + width % size
-    startValuation = self.list[startIndex].valuation()
-    endValuation = self.last().valuation()
+    startValuation = self.list[startIndex].valuation
+    endValuation = self.last().valuation
     profitRatio = endValuation / startValuation
     return math.pow(profitRatio, 1.0 / intervalNumber) - 1
   
@@ -44,8 +44,8 @@ class SnapshotList:
     profitRatioList: List[float] = []
     for currentIndex in range(startIndex, self.length(), intervalNumber):
       endIndex = currentIndex + intervalNumber - 1
-      currentValuation = self.list[currentIndex].valuation()
-      endValuation = self.list[endIndex].valuation()
+      currentValuation = self.list[currentIndex].valuation
+      endValuation = self.list[endIndex].valuation
       profitRatio = (endValuation - currentValuation) / currentValuation
       profitRatioList.append(profitRatio)
     return numpy.std(profitRatioList)
