@@ -10,20 +10,8 @@ import numpy
 @dataclass
 class Snapshot:
   time: datetime
-  funds: float = 0
-  fundsDebt: float = 0
-  assets: float = 0
-  assetsDebt: float = 0
+  valuation: float
   price: float = 0
-  
-  def assetsValuation(self):
-    return self.funds + self.assets * self.price
-  
-  def debtValuation(self):
-    return self.fundsDebt + self.assetsDebt * self.price
-  
-  def valuation(self):
-    return self.assetsValuation() - self.debtValuation()
 
 class SnapshotList:
   def __init__(self):
@@ -78,7 +66,4 @@ class SnapshotList:
   def dataframe(self):
     df = DataFrame(self.list)
     df.index = pd.to_datetime(df['time'])
-    df['assetsValuation'] = [item.assetsValuation() for item in self.list]
-    df['debtValuation'] = [item.debtValuation() for item in self.list]
-    df['valuation'] = [item.valuation() for item in self.list]
     return df
