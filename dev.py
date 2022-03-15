@@ -3,6 +3,7 @@ from account.contract_account import ContractAccount
 from account.spot_account import SpotAccount
 
 if __name__ == '__main__':
-  account = ContractAccount(100, 3, 0.01, 0.0002)
-  print(account.long(285, 13.07, None))
-  print(account.close_all(15.00))
+  account = SpotAccount(100, 0.001, 0.001)
+  account.buy_funds(50, 1, None)
+  print(account.funds)
+  print(account.spot_list[0])
