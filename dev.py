@@ -1,9 +1,18 @@
 #!/opt/homebrew/bin/python3
 from account.contract_account import ContractAccount
 from account.spot_account import SpotAccount
+from snapshot_list import Snapshot, SnapshotList
 
 if __name__ == '__main__':
-  account = SpotAccount(100, 0.001, 0.001)
-  account.buy_funds(50, 1, None)
-  print(account.funds)
-  print(account.spot_list[0])
+  snapshot_list = SnapshotList()
+  snapshot_list.append(Snapshot(None, 1))
+  snapshot_list.append(Snapshot(None, 2))
+  snapshot_list.append(Snapshot(None, 3))
+  snapshot_list.append(Snapshot(None, 4))
+  snapshot_list.append(Snapshot(None, 5))
+  snapshot_list.append(Snapshot(None, 6))
+  snapshot_list.append(Snapshot(None, 7))
+  snapshot_list.append(Snapshot(None, 8))
+  snapshot_list.append(Snapshot(None, 9))
+  snapshot_list.append(Snapshot(None, 10))
+  print(snapshot_list.return_ratio(4, 4))
