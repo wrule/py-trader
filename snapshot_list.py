@@ -42,12 +42,13 @@ class SnapshotList:
     # intervalNumber = int(width / size)
     startIndex = offset + width % size
     profitRatioList: List[float] = []
-    for currentIndex in range(startIndex, self.length(), size):
+    for currentIndex in range(startIndex, self.length(), size - 1):
       endIndex = currentIndex + size - 1
       currentValuation = self.list[currentIndex].valuation
       endValuation = self.list[endIndex].valuation
       profitRatio = (endValuation - currentValuation) / currentValuation
       profitRatioList.append(profitRatio)
+    print(profitRatioList)
     return numpy.std(profitRatioList)
   
   def sharpe_ratio(self, size: int = 7, offset: int = 0):
