@@ -52,7 +52,6 @@ class SnapshotList:
         profitRatioList.append(profitRatio)
       else:
         break
-    # print(profitRatioList)
     return numpy.std(profitRatioList)
     
     
