@@ -49,16 +49,6 @@ class SnapshotList:
       profitRatio = (endValuation - currentValuation) / currentValuation
       profitRatioList.append(profitRatio)
     return numpy.std(profitRatioList)
-    
-    # for startIndex in range(0, len(self.list), size):
-    #   endIndex = startIndex + size - 1
-    #   if endIndex < len(self.list):
-    #     startValuation = self.list[startIndex].valuation()
-    #     endValuation = self.list[endIndex].valuation()
-    #     profitRate = (endValuation - startValuation) / startValuation
-    #     print(profitRate)
-    # print(len(self.list))
-    return 0
   
   def sharpe_ratio(self, size: int = 7, offset: int = 0):
     return self.return_ratio(size, offset) / self.return_ratio_std(size, offset)
