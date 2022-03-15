@@ -20,3 +20,4 @@ if __name__ == '__main__':
   strategy = TwoLinesCross(trader, 'STOCHRSIk_49_8_8_27', 'STOCHRSId_49_8_8_27')
   strategy.backtesting(hist)
   print(trader.snapshotList.last().valuation)
+  print(trader.snapshotList.sharpe_ratio(12 * 4))
