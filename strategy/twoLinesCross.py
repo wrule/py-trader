@@ -29,11 +29,10 @@ class TwoLinesCross(Strategy):
       self.prev()[self.fast] <= self.prev()[self.slow] and
       self.last()[self.fast] > self.last()[self.slow]
     ):
-      self.trader.start(self.last())
-      self.trader.buy(self.last(), 1)
+      self.trader.spot.buy_funds_percent(1, self.last()['Close'], self.last()['Date'])
     elif (
       self.prev()[self.fast] >= self.prev()[self.slow] and
       self.last()[self.fast] < self.last()[self.slow]
     ):
-      self.trader.sell(self.last(), 1)
-      self.trader.end(self.last())
+      self.trader.spot.sell_all(self.last()['Close'], self.last()['Date'])
+

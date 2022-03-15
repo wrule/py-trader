@@ -32,4 +32,4 @@ class Strategy(ABC):
       self.hist.lastIndex = index
       if self.ready():
         self.watch()
-      self.trader.record(self.hist.last())
+      self.trader.make_snapshot(hist.last()['Date'], hist.last()['Close'])
