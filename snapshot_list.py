@@ -53,21 +53,7 @@ class SnapshotList:
       else:
         break
     return numpy.std(profitRatioList)
-    
-    
-    # width = self.length() - offset
-    # # intervalNumber = int(width / size)
-    # startIndex = offset + width % size
-    # profitRatioList: List[float] = []
-    # for currentIndex in range(startIndex, self.length(), size - 1):
-    #   endIndex = currentIndex + size - 1
-    #   currentValuation = self.list[currentIndex].valuation
-    #   endValuation = self.list[endIndex].valuation
-    #   profitRatio = (endValuation - currentValuation) / currentValuation
-    #   profitRatioList.append(profitRatio)
-    # print(profitRatioList)
-    # return numpy.std(profitRatioList)
-  
+
   def sharpe_ratio(self, size: int = 7, offset: int = 0):
     return self.return_ratio(size, offset) / self.return_ratio_std(size, offset)
 
