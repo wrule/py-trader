@@ -11,7 +11,6 @@ import numpy
 class Snapshot:
   time: datetime
   valuation: float
-  price: float = 0
 
 class SnapshotList:
   def __init__(self):
