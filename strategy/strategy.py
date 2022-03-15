@@ -27,7 +27,7 @@ class Strategy(ABC):
 
   def backtesting(self, hist: History):
     self.hist = hist
-    self.trader.reset()
+    # self.trader.reset()
     for index in range(hist.length()):
       self.hist.lastIndex = index
       if self.ready():
