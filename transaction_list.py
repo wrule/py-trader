@@ -6,6 +6,7 @@ from pandas import DataFrame
 from snapshot_list import Snapshot
 
 class Transaction:
+  direction: int
   start: Snapshot
   end: Snapshot
   
@@ -20,23 +21,29 @@ class Transaction:
   
   def toData(self):
     return TransactionData(
+      direction = self.direction,
       win = self.win(),
       profit = self.profit(),
       profitRate = self.profitRate(),
       startTime = self.start.time,
+      startPrice = self.start.price,
       startValuation = self.start.valuation,
       endTime = self.end.time,
+      endPrice = self.end.price,
       endValuation = self.end.valuation,
     )
 
 @dataclass
 class TransactionData:
+  direction: int
   win: bool
   profit: float
   profitRate: float
   startTime: datetime
+  startPrice: float
   startValuation: float
   endTime: datetime
+  endPrice: float
   endValuation: float
 
 class TransactionList:
@@ -47,8 +54,9 @@ class TransactionList:
   txn = Transaction()
   started = False
   
-  def start(self, snapshot: Snapshot):
+  def start(self, snapshot: Snapshot, direction: int = 1):
     if self.started == False:
+      self.txn.direction = direction
       self.txn.start = snapshot
       self.started = True
   

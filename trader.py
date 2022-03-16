@@ -29,10 +29,10 @@ class Trader:
     return result
 
   def make_snapshot(self, date: datetime, price: float):
-    self.snapshotList.append(Snapshot(date, self.valuation(price)))
+    self.snapshotList.append(Snapshot(date, price, self.valuation(price)))
     
   def mk_snapshot(self, date: datetime, price: float):
-    return Snapshot(date, self.valuation(price))
+    return Snapshot(date, price, self.valuation(price))
     
   def start(self, date: datetime, price: float):
     self.transactionList.start(self.mk_snapshot(date, price))

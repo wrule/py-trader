@@ -10,6 +10,7 @@ import numpy
 @dataclass
 class Snapshot:
   time: datetime
+  price: float
   valuation: float
 
 class SnapshotList:
