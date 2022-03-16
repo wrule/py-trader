@@ -10,39 +10,23 @@ class Transaction:
   end: Snapshot
   
   def win(self):
-    return self.end.valuation() > self.start.valuation()
+    return self.end.valuation > self.start.valuation
   
   def profit(self):
-    return self.end.valuation() - self.start.valuation()
+    return self.end.valuation - self.start.valuation
   
   def profitRate(self):
-    return self.profit() / self.start.valuation()
+    return self.profit() / self.start.valuation
   
   def toData(self):
     return TransactionData(
       win = self.win(),
       profit = self.profit(),
       profitRate = self.profitRate(),
-      
       startTime = self.start.time,
-      startFunds = self.start.funds,
-      startFundsDebt = self.start.fundsDebt,
-      startAssets = self.start.assets,
-      startAssetsDebt = self.start.assetsDebt,
-      startPrice = self.start.price,
-      startAssetsValuation = self.start.assetsValuation(),
-      startDebtValuation = self.start.debtValuation(),
-      startValuation = self.start.valuation(),
-      
+      startValuation = self.start.valuation,
       endTime = self.end.time,
-      endFunds = self.end.funds,
-      endFundsDebt = self.end.fundsDebt,
-      endAssets = self.end.assets,
-      endAssetsDebt = self.end.assetsDebt,
-      endPrice = self.end.price,
-      endAssetsValuation = self.end.assetsValuation(),
-      endDebtValuation = self.end.debtValuation(),
-      endValuation = self.end.valuation(),
+      endValuation = self.end.valuation,
     )
 
 @dataclass
@@ -50,25 +34,9 @@ class TransactionData:
   win: bool
   profit: float
   profitRate: float
-  
   startTime: datetime
-  startFunds: float
-  startFundsDebt: float
-  startAssets: float
-  startAssetsDebt: float
-  startPrice: float
-  startAssetsValuation: float
-  startDebtValuation: float
   startValuation: float
-  
   endTime: datetime
-  endFunds: float
-  endFundsDebt: float
-  endAssets: float
-  endAssetsDebt: float
-  endPrice: float
-  endAssetsValuation: float
-  endDebtValuation: float
   endValuation: float
 
 class TransactionList:
