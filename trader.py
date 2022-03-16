@@ -34,8 +34,8 @@ class Trader:
   def mk_snapshot(self, date: datetime, price: float):
     return Snapshot(date, price, self.valuation(price))
     
-  def start(self, date: datetime, price: float):
-    self.transactionList.start(self.mk_snapshot(date, price))
+  def start(self, date: datetime, price: float, direction: int = 1):
+    self.transactionList.start(self.mk_snapshot(date, price), direction)
     
   def end(self, date: datetime, price: float):
     self.transactionList.end(self.mk_snapshot(date, price))
