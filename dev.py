@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 if __name__ == '__main__':
-  df = load('BINANCE_BTCUSDT, 120_cd3a1')
+  df = load('BINANCE_BTCUSDT, 15_3f5ca')
   df.ta.stochrsi(49, 8, 8, 27, append = True)
   hist = History(to_dict_list(df))
   spot = SpotAccount(100, 0.0015, 0.0015)
