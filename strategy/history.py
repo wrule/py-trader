@@ -1,10 +1,14 @@
 from typing import Any, Dict, List
+from pandas import DataFrame
+from tools.yfinance import to_dict_list
 
 class History:
-  def __init__(self, data: List[Dict[str, Any]]):
-    self.data = data
+  def __init__(self, df: DataFrame):
+    self.df = df
+    self.data = to_dict_list(self.df)
     self.lastIndex = 0
   
+  df: DataFrame
   data: List[Dict[str, Any]]
   lastIndex: int
   
