@@ -25,6 +25,8 @@ def test(a: int, b: int, c: int, d: int):
   trader = Trader(contract, spot)
   strategy = TwoLinesCross(trader, f'STOCHRSIk_{a}_{b}_{c}_{d}', f'STOCHRSId_{a}_{b}_{c}_{d}')
   strategy.backtesting(hist)
+  print(trader.transactionList.length())
+  trader.transactionList.dataframe().to_excel('out.xlsx')
   return trader.snapshotList.last().valuation
 
 if __name__ == '__main__':
