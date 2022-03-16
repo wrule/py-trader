@@ -28,13 +28,14 @@ def test(a: int, b: int, c: int, d: int):
   return trader.snapshotList.last().valuation
 
 if __name__ == '__main__':
-  max = 0
-  while True:
-    a = randrange(2, 100)
-    b = randrange(2, 100)
-    c = randrange(2, 100)
-    d = randrange(2, 100)
-    result = test(a, b, c, d)
-    if result > 90:
-      print(a, b, c, d, result)
+  print(test(49, 8, 8, 27))
+  # max = 0
+  # while True:
+  #   a = randrange(2, 100)
+  #   b = randrange(2, 100)
+  #   c = randrange(2, 100)
+  #   d = randrange(2, 100)
+  #   result = test(a, b, c, d)
+  #   if result > 90:
+  #     print(a, b, c, d, result)
 
