@@ -20,3 +20,7 @@ class History:
 
   def length(self):
     return len(self.data)
+
+  def show(self):
+    print('可视化显示')
+    pass
