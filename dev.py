@@ -19,7 +19,7 @@ df_src = load('BINANCE_BTCUSDT, 15_3f5ca')
 def test(a: int, b: int, c: int, d: int):
   df = df_src.copy()
   df.ta.stochrsi(a, b, c, d, append = True)
-  hist = History(to_dict_list(df))
+  hist = History(df)
   spot = SpotAccount(0, 0.0015, 0.0015)
   contract = ContractAccount(100, 20, 0.001, 0.0004, 0.0002)
   trader = Trader(contract, spot)
