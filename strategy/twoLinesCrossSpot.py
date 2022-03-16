@@ -2,7 +2,7 @@ from strategy.strategy import Strategy
 from trader import Trader
 import math
 
-class TwoLinesCross(Strategy):
+class TwoLinesCrossSpot(Strategy):
   def __init__(
     self,
     trader: Trader,
@@ -29,10 +29,8 @@ class TwoLinesCross(Strategy):
       self.prev()[self.fast] <= self.prev()[self.slow] and
       self.last()[self.fast] > self.last()[self.slow]
     ):
-      self.trader.contract.close_all(self.last()['Close'])
-      self.trader.contract.buy_funds(
+      self.trader.spot.buy_funds_percent(
         1,
-        self.trader.contract.lever_funds(self.last()['Close']) * 0.1,
         self.last()['Close'],
         self.last()['Date'],
       )
@@ -40,11 +38,7 @@ class TwoLinesCross(Strategy):
       self.prev()[self.fast] >= self.prev()[self.slow] and
       self.last()[self.fast] < self.last()[self.slow]
     ):
-      self.trader.contract.close_all(self.last()['Close'])
-      self.trader.contract.buy_funds(
-        -1,
-        self.trader.contract.lever_funds(self.last()['Close']) * 0.08,
+      self.trader.spot.sell_all(
         self.last()['Close'],
         self.last()['Date'],
       )
-

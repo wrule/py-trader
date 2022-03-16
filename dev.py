@@ -8,6 +8,7 @@ from tools.yfinance import to_dict_list
 from strategy.history import History
 from trader import Trader
 from strategy.twoLinesCross import TwoLinesCross
+from strategy.twoLinesCrossSpot import TwoLinesCrossSpot
 import pandas_ta as ta
 import matplotlib.pyplot as plt
 import numpy as np
@@ -16,7 +17,7 @@ if __name__ == '__main__':
   df = load('BINANCE_BTCUSDT, 15_3f5ca')
   df.ta.stochrsi(49, 8, 8, 27, append = True)
   hist = History(to_dict_list(df))
-  spot = SpotAccount(100, 0.0015, 0.0015)
+  spot = SpotAccount(0, 0.0015, 0.0015)
   contract = ContractAccount(100, 20, 0.001, 0.0004, 0.0002)
   trader = Trader(contract, spot)
   strategy = TwoLinesCross(trader, 'STOCHRSIk_49_8_8_27', 'STOCHRSId_49_8_8_27')
