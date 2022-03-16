@@ -12,21 +12,29 @@ from strategy.twoLinesCrossSpot import TwoLinesCrossSpot
 import pandas_ta as ta
 import matplotlib.pyplot as plt
 import numpy as np
+from random import randrange
 
-if __name__ == '__main__':
-  df = load('BINANCE_BTCUSDT, 15_3f5ca')
-  df.ta.stochrsi(49, 8, 8, 27, append = True)
+df_src = load('BINANCE_BTCUSDT, 15_3f5ca')
+
+def test(a: int, b: int, c: int, d: int):
+  df = df_src.copy()
+  df.ta.stochrsi(a, b, c, d, append = True)
   hist = History(to_dict_list(df))
   spot = SpotAccount(0, 0.0015, 0.0015)
   contract = ContractAccount(100, 20, 0.001, 0.0004, 0.0002)
   trader = Trader(contract, spot)
-  strategy = TwoLinesCross(trader, 'STOCHRSIk_49_8_8_27', 'STOCHRSId_49_8_8_27')
+  strategy = TwoLinesCross(trader, f'STOCHRSIk_{a}_{b}_{c}_{d}', f'STOCHRSId_{a}_{b}_{c}_{d}')
   strategy.backtesting(hist)
-  print(trader.snapshotList.last().valuation)
-  print(trader.snapshotList.return_ratio(12 * 30))
-  print(trader.snapshotList.sharpe_ratio(12 * 30))
-  x = trader.snapshotList.dataframe()['time']
-  y = trader.snapshotList.dataframe()['valuation']
-  fig, ax = plt.subplots()
-  ax.plot(x, y)
-  plt.show()
+  return trader.snapshotList.last().valuation
+
+if __name__ == '__main__':
+  max = 0
+  while True:
+    a = randrange(2, 100)
+    b = randrange(2, 100)
+    c = randrange(2, 100)
+    d = randrange(2, 100)
+    result = test(a, b, c, d)
+    if result > 90:
+      print(a, b, c, d, result)
+
