@@ -29,7 +29,6 @@ class History:
 
   def show(self):
     df = self.df[5000:5200]
-    print(df)
     ap2 = [
       mpf.make_addplot(df['STOCHRSIk_49_8_8_27'], color = 'g', panel = 2, width = 0.5),
       mpf.make_addplot(df['STOCHRSId_49_8_8_27'], color = 'b', panel = 2, width = 0.5),
@@ -54,3 +53,24 @@ class History:
     fig.canvas.set_window_title('你好，世界')
     mplcursors.cursor(hover = True)
     mpf.show()
+    
+  def show_transaction(self):
+    df = self.df['2022-01-01':'2022-01-01']
+    ap2 = [
+      mpf.make_addplot(df['STOCHRSIk_49_8_8_27'], color = 'g', panel = 2, width = 0.5),
+      mpf.make_addplot(df['STOCHRSId_49_8_8_27'], color = 'b', panel = 2, width = 0.5),
+    ]
+    fig, ax = mpf.plot(
+      df,
+      type = 'candle',
+      volume = True,
+      style = 'binance',
+      datetime_format = '%m-%d %H:%M',
+      addplot = ap2,
+      tight_layout = True,
+      returnfig = True,
+    )
+    fig.canvas.set_window_title('交易视图')
+    mplcursors.cursor(hover = True)
+    mpf.show()
+
