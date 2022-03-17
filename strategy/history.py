@@ -1,8 +1,12 @@
+from time import sleep, time
+from turtle import width
 from typing import Any, Dict, List
 from matplotlib.pyplot import title
+from numpy import size
 from pandas import DataFrame
 from tools.yfinance import to_dict_list
 import mplfinance as mpf
+import mplcursors
 
 class History:
   def __init__(self, df: DataFrame):
@@ -24,13 +28,13 @@ class History:
     return len(self.data)
 
   def show(self):
-    df = self.df[5000:5400]
+    df = self.df[5000:5200]
     print(df)
     ap2 = [
-      mpf.make_addplot(df['STOCHRSIk_49_8_8_27'], color = 'g', panel = 2),
-      mpf.make_addplot(df['STOCHRSId_49_8_8_27'], color = 'b', panel = 2),
+      mpf.make_addplot(df['STOCHRSIk_49_8_8_27'], color = 'g', panel = 2, width = 0.5),
+      mpf.make_addplot(df['STOCHRSId_49_8_8_27'], color = 'b', panel = 2, width = 0.5),
     ]
-    mpf.plot(
+    fig, ax = mpf.plot(
       df,
       type = 'candle',
       volume = True,
@@ -40,7 +44,13 @@ class History:
       # figratio = (2.5, 1),
       # ylabel = '你好',
       datetime_format = '%m-%d %H:%M',
-      main_panel=1,volume_panel=0,
-      addplot=ap2,
+      main_panel = 0,
+      volume_panel = 1,
+      addplot = ap2,
+      tight_layout = True,
+      returnfig = True,
+      # axisoff = True,
     )
-    pass
+    fig.canvas.set_window_title('你好，世界')
+    mplcursors.cursor(hover = True)
+    mpf.show()
