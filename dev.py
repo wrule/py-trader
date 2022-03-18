@@ -27,7 +27,6 @@ def test(a: int, b: int, c: int, d: int):
   )
   df.to_excel('df.xlsx')
   hist = History(df)
-  hist.show_transaction()
   spot = SpotAccount(0, 0.0015, 0.0015)
   contract = ContractAccount(100, 20, 0.001, 0.0004, 0.0002)
   trader = Trader(contract, spot)
@@ -35,6 +34,7 @@ def test(a: int, b: int, c: int, d: int):
   strategy.backtesting(hist)
   # print(trader.transactionList.length())
   trader.transactionList.dataframe().to_excel('out.xlsx')
+  hist.show_transaction()
   return trader.snapshotList.last().valuation
 
 if __name__ == '__main__':
