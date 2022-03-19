@@ -59,8 +59,8 @@ class History:
   def show_transaction(self, tran: Transaction):
     df = self.df[tran.start.time:tran.end.time]
     ap2 = [
-      mpf.make_addplot(df['STOCHRSIk_49_8_8_27'], color = 'g', panel = 2, width = 0.5),
-      mpf.make_addplot(df['STOCHRSId_49_8_8_27'], color = 'b', panel = 2, width = 0.5),
+      mpf.make_addplot(df['STOCHRSIk_49_8_8_27'], color = 'g', panel = 2, width = 0.5, ylim=(0,100)),
+      mpf.make_addplot(df['STOCHRSId_49_8_8_27'], color = 'b', panel = 2, width = 0.5, ylim=(0,100)),
     ]
     fig, ax = mpf.plot(
       df,
