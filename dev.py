@@ -34,7 +34,9 @@ def test(a: int, b: int, c: int, d: int):
   strategy.backtesting(hist)
   # print(trader.transactionList.length())
   trader.transactionList.dataframe().to_excel('out.xlsx')
-  hist.show_transaction()
+  
+  first = trader.transactionList.list[7]
+  hist.show_transaction(first)
   return trader.snapshotList.last().valuation
 
 if __name__ == '__main__':

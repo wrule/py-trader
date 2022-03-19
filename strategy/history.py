@@ -8,6 +8,8 @@ from tools.yfinance import to_dict_list
 import mplfinance as mpf
 import mplcursors
 
+from transaction_list import Transaction
+
 class History:
   def __init__(self, df: DataFrame):
     self.df = df
@@ -54,8 +56,8 @@ class History:
     mplcursors.cursor(hover = True)
     mpf.show()
     
-  def show_transaction(self):
-    df = self.df['2022-01-01':'2022-01-01']
+  def show_transaction(self, tran: Transaction):
+    df = self.df[tran.start.time:tran.end.time]
     ap2 = [
       mpf.make_addplot(df['STOCHRSIk_49_8_8_27'], color = 'g', panel = 2, width = 0.5),
       mpf.make_addplot(df['STOCHRSId_49_8_8_27'], color = 'b', panel = 2, width = 0.5),
